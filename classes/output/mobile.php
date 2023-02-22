@@ -7,7 +7,9 @@ defined('MOODLE_INTERNAL') || die();
 class mobile {
 
 
-    public static function view_facetoface() {
+    public static function view_facetoface($args) {
+        var_dump($args);
+        die();
         global $DB, $PAGE;
         require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
         require_once('lib.php');
@@ -126,7 +128,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1 class="text-center">Pale</h1>' . $testna,
+                    'html' => '<h1>' . $args . '</h1>',
                 ],
             ],
         ];
