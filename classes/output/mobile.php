@@ -46,7 +46,7 @@ class mobile {
         $PAGE->set_title($pagetitle);
         $PAGE->set_heading($course->fullname);
 
-        echo $OUTPUT->header();
+        $testna =  $OUTPUT->header();
 
         if (!$facetofaces = get_all_instances_in_course('facetoface', $course)) {
             notice(get_string('nofacetofaces', 'facetoface'), "../../course/view.php?id=$course->id");
@@ -118,15 +118,15 @@ class mobile {
             }
         }
 
-        echo html_writer::empty_tag('br');
+        $testna .= html_writer::empty_tag('br');
 
-        echo html_writer::table($table);
-        echo $OUTPUT->footer($course);
+        $testna .= html_writer::table($table);
+        $testna .= $OUTPUT->footer($course);
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1 class="text-center">Pale</h1>',
+                    'html' => '<h1 class="text-center">Pale</h1>' . $testna,
                 ],
             ],
         ];
