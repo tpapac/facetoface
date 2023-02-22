@@ -4,10 +4,10 @@ $addons = [
     'mod_facetoface' => [
         'handlers' => [
             'facetoface' => [
-                'delegate' => 'CoreMainMenuHomeDelegate',
+                'delegate' => 'CoreCourseModuleDelegate',
                 'method' => 'view_facetoface',
                 'displaydata' => [
-                    'icon' => $CFG->wwwroot . '/mod/facetoface/pix/icon.gif',
+                    'icon' => $CFG->wwwroot . '/mod/facetoface/pix/icon.png',
                     'class' => '',
                 ],
                 'offlinefunctions' => [
