@@ -8,12 +8,13 @@ class mobile {
 
 
     public static function view_facetoface($args) {
-
-        return [
+		$args = (object) $args;
+		$cm = get_coursemodule_from_id('facetoface', $args->cmid);
+		        return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1>' . $args . '</h1>',
+                    'html' => '<h1>' . $cm->id . '</h1>',
                 ],
             ],
         ];
