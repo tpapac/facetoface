@@ -1,0 +1,3 @@
+[submodule "mod/facetoface"]
+	path = mod/facetoface
+	url = https://github.com/tpapac/facetoface.git
