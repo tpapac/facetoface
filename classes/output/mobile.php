@@ -148,7 +148,7 @@ class mobile {
                     new moodle_url('sessions.php', array('f' => $facetoface->id)),
                     get_string('addsession', 'facetoface')
                 );
-                $ispi \html_writer::tag('p', $addsessionlink);
+                $ispis .= \html_writer::tag('p', $addsessionlink);
             }
 
             // Previous sessions.
@@ -156,6 +156,35 @@ class mobile {
                 $ispis .= $OUTPUT->heading(get_string('previoussessions', 'facetoface'));
                 $ispis .= $f2frenderer->print_session_list_table($customfields, $previousarray, $viewattendees, $editsessions);
             }
+        }
+
+        function get_locations($facetofaceid) {
+            global $CFG, $DB;
+
+            $locationfieldid = $DB->get_field('facetoface_session_field', 'id', array('shortname' => 'location'));
+            if (!$locationfieldid) {
+                return array();
+            }
+
+            $sql = "SELECT DISTINCT d.data AS location
+              FROM {facetoface} f
+              JOIN {facetoface_sessions} s ON s.facetoface = f.id
+              JOIN {facetoface_session_data} d ON d.sessionid = s.id
+             WHERE f.id = ? AND d.fieldid = ?";
+
+            if ($records = $DB->get_records_sql($sql, array($facetofaceid, $locationfieldid))) {
+                $locationmenu[''] = get_string('alllocations', 'facetoface');
+
+                $i = 1;
+                foreach ($records as $record) {
+                    $locationmenu[$record->location] = format_string($record->location);
+                    $i++;
+                }
+
+                return $locationmenu;
+            }
+
+            return array();
         }
 
 
