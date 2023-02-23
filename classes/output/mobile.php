@@ -81,7 +81,7 @@ class mobile
     {
         global $CFG, $USER, $DB, $OUTPUT, $PAGE, $ispis;
 
-
+        $f2frenderer = $PAGE->get_renderer('mod_facetoface');
         $timenow = time();
 
         $context = \context_course::instance($courseid);
@@ -157,6 +157,12 @@ class mobile
             );
 
             $ispis .= \html_writer::tag('p', $signupforstreamlink);
+        }
+        if (empty($upcomingarray) && empty($upcomingtbdarray)) {
+            print_string('noupcoming', 'facetoface');
+        } else {
+            $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
+            $ispis .= $f2frenderer->print_session_list_table($customfields, $upcomingarray, $viewattendees, $editsessions, !$bulksignup);
         }
 
 
