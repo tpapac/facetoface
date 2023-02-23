@@ -4,64 +4,67 @@ namespace mod_facetoface\output;
 
 defined('MOODLE_INTERNAL') || die();
 
-class mobile {
+class mobile
+{
 
-    public static function view_facetoface($args) {
-	global $DB, $OUTPUT, $CFG;
-	$args = (object) $args;
-	$dir = 	dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-	require_once($dir . '/config.php');
-	require_once($dir . '/mod/facetoface/lib.php');
-	require_once($dir . '/mod/facetoface/renderer.php');
-	$cmid = get_coursemodule_from_id('facetoface', $args->cmid);
-	if ($args->courseid) {
-    		if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
-        		throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
-    		}
-    	if (!$course = $DB->get_record('course', array('id' => $cm->course))) {
-        	throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
-    	}
-    	if (!$facetoface = $DB->get_record('facetoface', array('id' => $cm->instance))) {
-        	throw new \moodle_exception('error:incorrectcoursemodule', 'facetoface');
-    	}
-	} else if ($f) {
-    	if (!$facetoface = $DB->get_record('facetoface', array('id' => $f))) {
-        	throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
-    	}
-    	if (!$course = $DB->get_record('course', array('id' => $facetoface->course))) {
-        throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
-    	}
-    	if (!$cm = get_coursemodule_from_instance('facetoface', $facetoface->id, $course->id)) {
-        throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
-    	}
-} else {
-    throw new \moodle_exception('error:mustspecifycoursemodulefacetoface', 'facetoface');
-}
+    public static function view_facetoface($args)
+    {
+        global $DB, $OUTPUT, $CFG;
+        $args = (object)$args;
+        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
+        require_once($dir . '/mod/facetoface/renderer.php');
+        $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
+        if ($args->courseid) {
+            if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
+                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
+            }
+            if (!$course = $DB->get_record('course', array('id' => $cm->course))) {
+                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
+            }
+            if (!$facetoface = $DB->get_record('facetoface', array('id' => $cm->instance))) {
+                throw new \moodle_exception('error:incorrectcoursemodule', 'facetoface');
+            }
+        } else if ($f) {
+            if (!$facetoface = $DB->get_record('facetoface', array('id' => $f))) {
+                throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
+            }
+            if (!$course = $DB->get_record('course', array('id' => $facetoface->course))) {
+                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
+            }
+            if (!$cm = get_coursemodule_from_instance('facetoface', $facetoface->id, $course->id)) {
+                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
+            }
+        } else {
+            throw new \moodle_exception('error:mustspecifycoursemodulefacetoface', 'facetoface');
+        }
 
-	$context = \context_module::instance($cmid->id);
-	global $ispis;
-	$ispis .= $OUTPUT->box_start();
-	$ispis .= $OUTPUT->heading(get_string('allsessionsin', 'facetoface', format_string($facetoface->name)), 2);
-	$facetoface = $DB->get_record('facetoface', array('id'=>$cm->instance));
-	if ($facetoface->intro) {
-    		$ispis .= $OUTPUT->box_start('generalbox', 'description');
-    		$ispis .= format_module_intro('facetoface', $facetoface, $cm->id);
-    		$ispis .= $OUTPUT->box_end();
-	} else {
-    		$ispis .= \html_writer::empty_tag('br');
-	}
-	$locations = get_locations($facetoface->id);
+        $context = \context_module::instance($cmid->id);
+        global $ispis;
+        $ispis .= $OUTPUT->box_start();
+        $ispis .= $OUTPUT->heading(get_string('allsessionsin', 'facetoface', format_string($facetoface->name)), 2);
+        $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
+        if ($facetoface->intro) {
+            $ispis .= $OUTPUT->box_start('generalbox', 'description');
+            $ispis .= format_module_intro('facetoface', $facetoface, $cm->id);
+            $ispis .= $OUTPUT->box_end();
+        } else {
+            $ispis .= \html_writer::empty_tag('br');
+        }
+        $locations = get_locations($facetoface->id);
         if (count($locations) > 2) {
             $ispis .= \html_writer::start_tag('form', array('action' => 'view.php', 'method' => 'get', 'class' => 'formlocation'));
             $ispis .= \html_writer::start_tag('div');
             $ispis .= \html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'f', 'value' => $facetoface->id));
             $ispis .= \html_writer::select($locations, 'location', $location, '', array('onchange' => 'this.form.submit();'));
-            $ispis .= \html_writer::end_tag('div'). \html_writer::end_tag('form');
+            $ispis .= \html_writer::end_tag('div') . \html_writer::end_tag('form');
         }
 
         print_session_list($course->id, $facetoface, $location);
 
-        function print_session_list($courseid, $facetoface, $location) {
+        function print_session_list($courseid, $facetoface, $location)
+        {
             global $CFG, $USER, $DB, $OUTPUT, $PAGE, $ispis;
 
 
@@ -90,7 +93,7 @@ class mobile {
             $previousarray = array();
             $upcomingtbdarray = array();
 
-            if ($sessions = facetoface_get_sessions($facetoface->id, $location) ) {
+            if ($sessions = facetoface_get_sessions($facetoface->id, $location)) {
                 foreach ($sessions as $session) {
 
                     $sessionstarted = false;
@@ -152,13 +155,11 @@ class mobile {
             }
 
             // Previous sessions.
-            if (!empty($previousarray)) {
-                $ispis .= $OUTPUT->heading(get_string('previoussessions', 'facetoface'));
-                $ispis .= $f2frenderer->print_session_list_table($customfields, $previousarray, $viewattendees, $editsessions);
-            }
+
         }
 
-        function get_locations($facetofaceid) {
+        function get_locations($facetofaceid)
+        {
             global $CFG, $DB;
 
             $locationfieldid = $DB->get_field('facetoface_session_field', 'id', array('shortname' => 'location'));
@@ -188,12 +189,12 @@ class mobile {
         }
 
 
-	$ispis .= $OUTPUT->box_end();
+        $ispis .= $OUTPUT->box_end();
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' =>$ispis . 'asd',
+                    'html' => $ispis . 'asd',
                 ],
             ],
         ];
