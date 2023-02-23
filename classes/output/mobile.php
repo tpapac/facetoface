@@ -9,12 +9,13 @@ class mobile
 
     public static function view_facetoface($args)
     {
-        global $DB, $OUTPUT, $CFG;
+        global $DB, $OUTPUT, $CFG, $PAGE;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderer.php');
+	$f2frenderer = $PAGE->get_renderer('mod_facetoface');
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
         if ($args->courseid) {
             if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
@@ -52,7 +53,7 @@ class mobile
         } else {
             $ispis .= \html_writer::empty_tag('br');
         }
-        $locations = get_locations($facetoface->id);
+        $locations = self::get_locations($facetoface->id);
         if (count($locations) > 2) {
             $ispis .= \html_writer::start_tag('form', array('action' => 'view.php', 'method' => 'get', 'class' => 'formlocation'));
             $ispis .= \html_writer::start_tag('div');
@@ -61,7 +62,7 @@ class mobile
             $ispis .= \html_writer::end_tag('div') . \html_writer::end_tag('form');
         }
 
-        print_session_list($course->id, $facetoface, $location);
+        self::print_session_list($course->id, $facetoface, $location);
 
 
 
@@ -71,7 +72,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $ispis . 'asd',
+                    'html' => $PAGE->url . 'asd',
                 ],
             ],
         ];
@@ -161,7 +162,7 @@ class mobile
 
         if ($editsessions) {
             $addsessionlink = \html_writer::link(
-                new moodle_url('sessions.php', array('f' => $facetoface->id)),
+                new \moodle_url('sessions.php', array('f' => $facetoface->id)),
                 get_string('addsession', 'facetoface')
             );
             $ispis .= \html_writer::tag('p', $addsessionlink);
