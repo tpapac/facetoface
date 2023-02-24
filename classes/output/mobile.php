@@ -14,7 +14,7 @@ class mobile
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
-        require_once($dir . '/mod/facetoface/renderer.php');
+        require_once($dir . '/mod/facetoface/renderermobile.php');
 	$f2frenderer = $PAGE->get_renderer('mod_facetoface');
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
         if ($args->courseid) {
@@ -161,19 +161,10 @@ class mobile
 
         if (!empty($upcomingarray) && $bulksignup) {
             $firstsession = $sessions[array_keys($sessions)[0]];
-            $signupforstreamlink = \html_writer::div('<ion-item>
-                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="xxx"
-                        component="mod_facetoface" method="signup"
-                        [args]="">
-                   
-                </ion-button></ion-label>
-            </ion-item>');
-
-
-//            link(
-//                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
-//                get_string('signupforstream', 'facetoface')
-//            );
+            $signupforstreamlink = \html_writer::link(
+                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
+                get_string('signupforstream', 'facetoface')
+            );
 
             $ispis .= \html_writer::tag('p', $signupforstreamlink);
         }
