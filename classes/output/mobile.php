@@ -15,7 +15,7 @@ class mobile
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
-	$f2frenderer = $PAGE->get_renderer('mod_facetoface');
+	    $f2frenderer = $PAGE->get_renderer('mod_facetoface');
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
         if ($args->courseid) {
             if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
@@ -172,7 +172,7 @@ class mobile
             print_string('noupcoming', 'facetoface');
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
-            $ispis .= $f2frenderer->print_session_list_table($customfields, $upcomingarray, $viewattendees, $editsessions, !$bulksignup);
+            $ispis .= \mod_facetoface_renderermobile::print_session_list_table($customfields, $upcomingarray, $viewattendees, $editsessions, !$bulksignup);
         }
 
 
