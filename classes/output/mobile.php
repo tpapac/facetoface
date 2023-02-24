@@ -72,7 +72,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $PAGE->url . 'asd',
+                    'html' => $ispis,
                 ],
             ],
         ];
