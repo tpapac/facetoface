@@ -77,6 +77,16 @@ class mobile
             ],
         ];
     }
+    public static function signup() {
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => '<h1 class="text-center">SIGNUP</h1>',
+                ],
+            ],
+        ];
+    }
     function print_session_list($courseid, $facetoface, $location)
     {
         global $CFG, $USER, $DB, $OUTPUT, $PAGE, $ispis;
@@ -151,10 +161,19 @@ class mobile
 
         if (!empty($upcomingarray) && $bulksignup) {
             $firstsession = $sessions[array_keys($sessions)[0]];
-            $signupforstreamlink = \html_writer::link(
-                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
-                get_string('signupforstream', 'facetoface')
-            );
+            $signupforstreamlink = \html_writer::div('<ion-item>
+                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="xxx"
+                        component="mod_facetoface" method="signup"
+                        [args]="">
+                   
+                </ion-button></ion-label>
+            </ion-item>');
+
+
+//            link(
+//                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
+//                get_string('signupforstream', 'facetoface')
+//            );
 
             $ispis .= \html_writer::tag('p', $signupforstreamlink);
         }
