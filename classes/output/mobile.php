@@ -335,7 +335,7 @@ class mobile
 
         if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
             // Signup form.
-         //   $mform->display();
+            $mform->display();
         }
 
         $signupispis .= $OUTPUT->box_end();
@@ -345,7 +345,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' =>'<h1>Test</h1>' . $signupispis,
+                    'html' =>'<h1>Tet</h1>' . $signupispis,
                 ],
             ],
         ];
