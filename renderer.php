@@ -176,6 +176,8 @@ class mod_facetoface_renderer extends plugin_renderer_base {
                 $options .= html_writer::link('signup.php?s='.$session->id.'&backtoallsessions='.$session->facetoface,
                     get_string('signup', 'facetoface'));
             }
+
+            $args='"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
             if (empty($options)) {
                 $options = get_string('none', 'facetoface');
             }
