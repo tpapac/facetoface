@@ -2,6 +2,8 @@
 
 namespace mod_facetoface\output;
 
+use mod_facetoface_signup_form;
+
 defined('MOODLE_INTERNAL') || die();
 
 class mobile
@@ -131,7 +133,7 @@ class mobile
 
         $showdiscountcode = ($session->discountcost > 0);
 
-        $mform = new \mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
+        $mform = new mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
         if ($mform->is_cancelled()) {
             redirect($returnurl);
         }
