@@ -78,7 +78,7 @@ class mobile
         ];
     }
     public static function signup($args) {
-
+	  $args = (object) $args;
 //        global $DB, $CFG;
 //        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 //        require_once($dir . '/config.php');
@@ -86,7 +86,7 @@ class mobile
 //        $signupispis = '';
 //
 //        if (!$session = facetoface_get_session($args->s)) {
-//            throw new \moodle_exception($args->s, 'facetoface', '', 'asd', 'asdmkalsdmaslkd');
+//            throw new \moodle_exception($args->s, 'facetoface', '', 'asd', 'wasdmkalsdmaslkd');
 //        }
 //        if (!$facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface))) {
 //            throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
@@ -346,7 +346,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $args->s,
+                    'html' =>'<h1>sdads' . $args->s . '</h1>',
                 ],
             ],
         ];
