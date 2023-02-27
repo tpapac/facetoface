@@ -337,15 +337,12 @@ class mobile
 
         if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
             // Signup form.
+            $mform->set_data($toform);
             $content = (object) [
                 'text' => '',
             ];
             $content->text = $mform->render();
-            $signupispis .= $content;
-            $signupispis .= '<IonButton className="ion-margin-top" type="submit" expand="block">
-    Login
-  </IonButton>';
-
+            $signupispis .= $content->text;
         }
 
         $signupispis .= $OUTPUT->box_end();
