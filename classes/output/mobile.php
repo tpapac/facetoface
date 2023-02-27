@@ -257,22 +257,22 @@ class mobile
             $mform->set_data($toform);
         }
 
-//
-//
-//        $heading = get_string('signupfor', 'facetoface', format_string($facetoface->name));
-//
-//        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
-//        $signedup = facetoface_check_signup($facetoface->id);
-//
-//        if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && $signedup && $signedup != $session->id) {
-//            throw new \moodle_exception('error:signedupinothersession', 'facetoface', $returnurl);
-//        }
-//
-//        $signupispis .= $OUTPUT->box_start();
-//        $signupispis .= $OUTPUT->heading($heading);
-//
-//        $timenow = time();
-//
+
+
+        $heading = get_string('signupfor', 'facetoface', format_string($facetoface->name));
+
+        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
+        $signedup = facetoface_check_signup($facetoface->id);
+
+        if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && $signedup && $signedup != $session->id) {
+            throw new \moodle_exception('error:signedupinothersession', 'facetoface', $returnurl);
+        }
+
+        $signupispis .= $OUTPUT->box_start();
+        $signupispis .= $OUTPUT->heading($heading);
+
+        $timenow = time();
+
 //        if (!$isbulksignup && $session->datetimeknown && facetoface_has_session_started($session, $timenow)) {
 //            $inprogressstr = get_string('cannotsignupsessioninprogress', 'facetoface');
 //            $overstr = get_string('cannotsignupsessionover', 'facetoface');
