@@ -133,7 +133,7 @@ class mobile
 
         $showdiscountcode = ($session->discountcost > 0);
 
-        $mform = new mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
+        $mform = new mod_facetoface_signup_form();
         if ($mform->is_cancelled()) {
             redirect($returnurl);
         }
