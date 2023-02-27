@@ -79,11 +79,7 @@ class mobile
     }
     public static function signup($args) {
 	  $args = (object) $args;
-<<<<<<< HEAD
-        global $DB, $CFG;
-=======
         global $DB, $CFG, $OUTPUT;
->>>>>>> 1a76fa7a58a7d911307b5e628e3023817d4d003d
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
@@ -103,13 +99,8 @@ class mobile
         }
 
         require_course_login($course, true, $cm);
-<<<<<<< HEAD
-        $context = context_course::instance($course->id);
-        $contextmodule = context_module::instance($cm->id);
-=======
         $context = \context_course::instance($course->id);
         $contextmodule = \context_module::instance($cm->id);
->>>>>>> 1a76fa7a58a7d911307b5e628e3023817d4d003d
         require_capability('mod/facetoface:view', $context);
 
         $returnurl = "$CFG->wwwroot/course/view.php?id=$course->id";
@@ -125,11 +116,7 @@ class mobile
                 $loginurl = str_replace('http:', 'https:', $loginurl);
             }
 
-<<<<<<< HEAD
-            $signupispis .= $OUTPUT->header();
-=======
-            
->>>>>>> 1a76fa7a58a7d911307b5e628e3023817d4d003d
+
             $out = \html_writer::tag('p', get_string('guestsno', 'facetoface')) .
                 \html_writer::empty_tag('br') .
                 \html_writer::tag('p', get_string('continuetologin', 'facetoface'));
@@ -145,11 +132,7 @@ class mobile
 
         $showdiscountcode = ($session->discountcost > 0);
 
-<<<<<<< HEAD
-        $mform = new mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
-=======
         $mform = new \mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
->>>>>>> 1a76fa7a58a7d911307b5e628e3023817d4d003d
         if ($mform->is_cancelled()) {
             redirect($returnurl);
         }
@@ -274,11 +257,7 @@ class mobile
             $mform->set_data($toform);
         }
 
-<<<<<<< HEAD
-        $signupispis .= $OUTPUT->header();
-=======
-        
->>>>>>> 1a76fa7a58a7d911307b5e628e3023817d4d003d
+
 
         $heading = get_string('signupfor', 'facetoface', format_string($facetoface->name));
 
