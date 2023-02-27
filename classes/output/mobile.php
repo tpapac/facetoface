@@ -79,13 +79,11 @@ class mobile
     }
     public static function signup($args) {
 
-        $s = required_param('s', PARAM_INT); // Facetoface session ID.
-
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1 class="text-center">SINUP' . $args->s</h1>',
+                    'html' => '<h1 class="text-center">SINUP' . $args->s . '</h1>',
                 ],
             ],
         ];
