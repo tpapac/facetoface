@@ -314,16 +314,16 @@ class mobile
             $signupispis .= \html_writer::empty_tag('br') . \html_writer::link($returnurl, get_string('goback', 'facetoface'), array('title' => get_string('goback', 'facetoface')));
         }
 
-//        $managerrequired = facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id);
-//        if (!$signedup && $managerrequired) {
-//
-//            // Don't allow signup to proceed if a manager is required.
-//            // Check to see if the user has a managers email set.
-//            $signupispis .= \html_writer::tag('p', \html_writer::tag('strong', get_string('error:manageremailaddressmissing', 'facetoface')));
-//            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link($returnurl, get_string('goback', 'facetoface'), array('title' => get_string('goback', 'facetoface')));
-//
-//        }
-//
+        $managerrequired = facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id);
+        if (!$signedup && $managerrequired) {
+
+            // Don't allow signup to proceed if a manager is required.
+            // Check to see if the user has a managers email set.
+            $signupispis .= \html_writer::tag('p', \html_writer::tag('strong', get_string('error:manageremailaddressmissing', 'facetoface')));
+            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link($returnurl, get_string('goback', 'facetoface'), array('title' => get_string('goback', 'facetoface')));
+
+        }
+
 //        $hascap = has_capability('mod/facetoface:signup', $context);
 //        if (!$signedup && !$managerrequired && !$hascap) {
 //            $signupispis .= \html_writer::tag('p', \html_writer::tag('strong', get_string('error:nopermissiontosignup', 'facetoface')));
@@ -346,7 +346,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' =>'<h1>Te1st</h1>' . $signupispis,
+                    'html' =>'<h1>Te12st</h1>' . $signupispis,
                 ],
             ],
         ];
