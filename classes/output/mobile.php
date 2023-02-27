@@ -84,9 +84,9 @@ class mobile
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         $signupispis = '';
-
-        if (!$session = facetoface_get_session($args->s)) {
-            throw new \moodle_exception($args->s, 'facetoface', '', 'asd', 'asdmkalsdmaslkd');
+	$s = $args[0][appid];
+        if (!$session = \facetoface_get_session($s)) {
+            throw new \moodle_exception('appid', 'mod_facetoface', $args->s, $args->s);
         }
         if (!$facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface))) {
             throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
