@@ -108,22 +108,22 @@ class mobile
             $returnurl = "$CFG->wwwroot/mod/facetoface/view.php?f=$backtoallsessions";
         }
 
-//
-//// Guests can't signup for a session, so offer them a choice of logging in or going back.
-//        if (isguestuser()) {
-//            $loginurl = $CFG->wwwroot . '/login/index.php';
-//            if (!empty($CFG->loginhttps)) {
-//                $loginurl = str_replace('http:', 'https:', $loginurl);
-//            }
-//
-//
-//            $out = \html_writer::tag('p', get_string('guestsno', 'facetoface')) .
-//                \html_writer::empty_tag('br') .
-//                \html_writer::tag('p', get_string('continuetologin', 'facetoface'));
-//            $signupispis .= $OUTPUT->confirm($out, $loginurl, get_local_referer(false));
-//            $signupispis .= $OUTPUT->footer();
-//            exit();
-//        }
+
+// Guests can't signup for a session, so offer them a choice of logging in or going back.
+        if (isguestuser()) {
+            $loginurl = $CFG->wwwroot . '/login/index.php';
+            if (!empty($CFG->loginhttps)) {
+                $loginurl = str_replace('http:', 'https:', $loginurl);
+            }
+
+
+            $out = \html_writer::tag('p', get_string('guestsno', 'facetoface')) .
+                \html_writer::empty_tag('br') .
+                \html_writer::tag('p', get_string('continuetologin', 'facetoface'));
+            $signupispis .= $OUTPUT->confirm($out, $loginurl, get_local_referer(false));
+            $signupispis .= $OUTPUT->footer();
+            exit();
+        }
 //
 //        $manageremail = false;
 //        if (get_config(null, 'facetoface_addchangemanageremail')) {
