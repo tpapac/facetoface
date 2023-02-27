@@ -79,7 +79,7 @@ class mobile
     }
     public static function signup($args) {
 	  $args = (object) $args;
-        global $DB, $CFG;
+        global $DB, $CFG, $OUTPUT;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
@@ -99,8 +99,8 @@ class mobile
         }
 
         require_course_login($course, true, $cm);
-        $context = context_course::instance($course->id);
-        $contextmodule = context_module::instance($cm->id);
+        $context = \context_course::instance($course->id);
+        $contextmodule = \context_module::instance($cm->id);
         require_capability('mod/facetoface:view', $context);
 
         $returnurl = "$CFG->wwwroot/course/view.php?id=$course->id";
@@ -116,7 +116,7 @@ class mobile
                 $loginurl = str_replace('http:', 'https:', $loginurl);
             }
 
-            $signupispis .= $OUTPUT->header();
+            
             $out = \html_writer::tag('p', get_string('guestsno', 'facetoface')) .
                 \html_writer::empty_tag('br') .
                 \html_writer::tag('p', get_string('continuetologin', 'facetoface'));
@@ -132,7 +132,7 @@ class mobile
 
         $showdiscountcode = ($session->discountcost > 0);
 
-        $mform = new mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
+        $mform = new \mod_facetoface_signup_form(null, compact('s', 'backtoallsessions', 'manageremail', 'showdiscountcode'));
         if ($mform->is_cancelled()) {
             redirect($returnurl);
         }
@@ -257,7 +257,7 @@ class mobile
             $mform->set_data($toform);
         }
 
-        $signupispis .= $OUTPUT->header();
+        
 
         $heading = get_string('signupfor', 'facetoface', format_string($facetoface->name));
 
