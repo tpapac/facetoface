@@ -273,47 +273,47 @@ class mobile
 
         $timenow = time();
 
-//        if (!$isbulksignup && $session->datetimeknown && facetoface_has_session_started($session, $timenow)) {
-//            $inprogressstr = get_string('cannotsignupsessioninprogress', 'facetoface');
-//            $overstr = get_string('cannotsignupsessionover', 'facetoface');
-//
-//            $errorstring = facetoface_is_session_in_progress($session, $timenow) ? $inprogressstr : $overstr;
-//
-//            $signupispis .= \html_writer::empty_tag('br') . $errorstring;
-//            $signupispis .= $OUTPUT->box_end();
-//            $signupispis .= $OUTPUT->footer($course);
-//            exit;
-//        }
-//
-//        if (!$isbulksignup && !$signedup && !facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
-//            throw new \moodle_exception('sessionisfull', 'facetoface', $returnurl);
-//            $signupispis .= $OUTPUT->box_end();
-//            $signupispis .= $OUTPUT->footer($course);
-//            exit;
-//        }
-//
-//        if (!$isbulksignup) {
-//            $signupispis .= facetoface_print_session($session, $viewattendees);
-//        }
-//
-//        if (!$isbulksignup && $signedup) {
-//            if (!($session->datetimeknown && facetoface_has_session_started($session, $timenow)) && $session->allowcancellations) {
-//
-//                // Cancellation link.
-//                $cancellationurl = new moodle_url('cancelsignup.php', array('s' => $session->id, 'backtoallsessions' => $backtoallsessions));
-//                $signupispis .= \html_writer::link($cancellationurl, get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
-//                $signupispis .= ' &ndash; ';
-//            }
-//
-//            // See attendees link.
-//            if ($viewattendees) {
-//                $attendeesurl = new moodle_url('attendees.php', array('s' => $session->id, 'backtoallsessions' => $backtoallsessions));
-//                $signupispis .= \html_writer::link($attendeesurl, get_string('seeattendees', 'facetoface'), array('title' => get_string('seeattendees', 'facetoface')));
-//            }
-//
-//            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link($returnurl, get_string('goback', 'facetoface'), array('title' => get_string('goback', 'facetoface')));
-//        }
-//
+        if (!$isbulksignup && $session->datetimeknown && facetoface_has_session_started($session, $timenow)) {
+            $inprogressstr = get_string('cannotsignupsessioninprogress', 'facetoface');
+            $overstr = get_string('cannotsignupsessionover', 'facetoface');
+
+            $errorstring = facetoface_is_session_in_progress($session, $timenow) ? $inprogressstr : $overstr;
+
+            $signupispis .= \html_writer::empty_tag('br') . $errorstring;
+            $signupispis .= $OUTPUT->box_end();
+            $signupispis .= $OUTPUT->footer($course);
+            exit;
+        }
+
+        if (!$isbulksignup && !$signedup && !facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
+            throw new \moodle_exception('sessionisfull', 'facetoface', $returnurl);
+            $signupispis .= $OUTPUT->box_end();
+            $signupispis .= $OUTPUT->footer($course);
+            exit;
+        }
+
+        if (!$isbulksignup) {
+            $signupispis .= facetoface_print_session($session, $viewattendees);
+        }
+
+        if (!$isbulksignup && $signedup) {
+            if (!($session->datetimeknown && facetoface_has_session_started($session, $timenow)) && $session->allowcancellations) {
+
+                // Cancellation link.
+                $cancellationurl = new moodle_url('cancelsignup.php', array('s' => $session->id, 'backtoallsessions' => $backtoallsessions));
+                $signupispis .= \html_writer::link($cancellationurl, get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
+                $signupispis .= ' &ndash; ';
+            }
+
+            // See attendees link.
+            if ($viewattendees) {
+                $attendeesurl = new moodle_url('attendees.php', array('s' => $session->id, 'backtoallsessions' => $backtoallsessions));
+                $signupispis .= \html_writer::link($attendeesurl, get_string('seeattendees', 'facetoface'), array('title' => get_string('seeattendees', 'facetoface')));
+            }
+
+            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link($returnurl, get_string('goback', 'facetoface'), array('title' => get_string('goback', 'facetoface')));
+        }
+
 //        $managerrequired = facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id);
 //        if (!$signedup && $managerrequired) {
 //
@@ -346,7 +346,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' =>'<h1>Test</h1>' . $signupispis,
+                    'html' =>'<h1>Te1st</h1>' . $signupispis,
                 ],
             ],
         ];
