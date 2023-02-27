@@ -121,7 +121,6 @@ class mobile
                 \html_writer::empty_tag('br') .
                 \html_writer::tag('p', get_string('continuetologin', 'facetoface'));
             $signupispis .= $OUTPUT->confirm($out, $loginurl, get_local_referer(false));
-            $signupispis .= $OUTPUT->footer();
             exit();
         }
 
@@ -281,14 +280,14 @@ class mobile
 
             $signupispis .= \html_writer::empty_tag('br') . $errorstring;
             $signupispis .= $OUTPUT->box_end();
-            $signupispis .= $OUTPUT->footer($course);
+
             exit;
         }
 
         if (!$isbulksignup && !$signedup && !facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
             throw new \moodle_exception('sessionisfull', 'facetoface', $returnurl);
             $signupispis .= $OUTPUT->box_end();
-            $signupispis .= $OUTPUT->footer($course);
+
             exit;
         }
 
@@ -340,7 +339,7 @@ class mobile
         }
 
         $signupispis .= $OUTPUT->box_end();
-        $signupispis .= $OUTPUT->footer($course);
+
 
         return [
             'templates' => [
