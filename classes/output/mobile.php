@@ -340,7 +340,7 @@ class mobile
         }
 
         $signupispis .= $OUTPUT->box_end();
-        $signupispis .= $OUTPUT->footer($course);
+//        $signupispis .= $OUTPUT->footer($course);
 
         return [
             'templates' => [
