@@ -324,16 +324,16 @@ class mobile
 
         }
 
-//        $hascap = has_capability('mod/facetoface:signup', $context);
-//        if (!$signedup && !$managerrequired && !$hascap) {
-//            $signupispis .= \html_writer::tag('p', \html_writer::tag('strong', get_string('error:nopermissiontosignup', 'facetoface')));
-//            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link(
-//                    $returnurl,
-//                    get_string('goback', 'facetoface'),
-//                    array('title' => get_string('goback', 'facetoface'))
-//                );
-//        }
-//
+        $hascap = has_capability('mod/facetoface:signup', $context);
+        if (!$signedup && !$managerrequired && !$hascap) {
+            $signupispis .= \html_writer::tag('p', \html_writer::tag('strong', get_string('error:nopermissiontosignup', 'facetoface')));
+            $signupispis .= \html_writer::empty_tag('br') . \html_writer::link(
+                    $returnurl,
+                    get_string('goback', 'facetoface'),
+                    array('title' => get_string('goback', 'facetoface'))
+                );
+        }
+
 //        if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
 //            // Signup form.
 //            $mform->display();
@@ -346,7 +346,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' =>'<h1>Te12st</h1>' . $signupispis,
+                    'html' =>'<h1>Test</h1>' . $signupispis,
                 ],
             ],
         ];
