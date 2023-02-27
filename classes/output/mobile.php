@@ -334,13 +334,13 @@ class mobile
                 );
         }
 
-//        if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
-//            // Signup form.
-//            $mform->display();
-//        }
-//
-//        $signupispis .= $OUTPUT->box_end();
-//        $signupispis .= $OUTPUT->footer($course);
+        if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
+            // Signup form.
+            $mform->display();
+        }
+
+        $signupispis .= $OUTPUT->box_end();
+        $signupispis .= $OUTPUT->footer($course);
 
         return [
             'templates' => [
