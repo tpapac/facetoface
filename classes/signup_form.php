@@ -29,7 +29,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
+global $CFG;
 require_once($CFG->dirroot . '/lib/formslib.php');
 
 class mod_facetoface_signup_form extends moodleform {
