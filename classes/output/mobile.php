@@ -19,26 +19,26 @@ class mobile
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
         if ($args->courseid) {
             if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
-                throw new /moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
+                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
             }
             if (!$course = $DB->get_record('course', array('id' => $cm->course))) {
-                throw new /moodle_exception('error:coursemisconfigured', 'facetoface');
+                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
             }
             if (!$facetoface = $DB->get_record('facetoface', array('id' => $cm->instance))) {
-                throw new /moodle_exception('error:incorrectcoursemodule', 'facetoface');
+                throw new \moodle_exception('error:incorrectcoursemodule', 'facetoface');
             }
         } else if ($f) {
             if (!$facetoface = $DB->get_record('facetoface', array('id' => $f))) {
-                throw new /moodle_exception('error:incorrectfacetofaceid', 'facetoface');
+                throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
             }
             if (!$course = $DB->get_record('course', array('id' => $facetoface->course))) {
-                throw new /moodle_exception('error:coursemisconfigured', 'facetoface');
+                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
             }
             if (!$cm = get_coursemodule_from_instance('facetoface', $facetoface->id, $course->id)) {
-                throw new /moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
+                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
             }
         } else {
-            throw new /moodle_exception('error:mustspecifycoursemodulefacetoface', 'facetoface');
+            throw new \moodle_exception('error:mustspecifycoursemodulefacetoface', 'facetoface');
         }
 
         $context = \context_module::instance($cmid->id);
@@ -86,16 +86,16 @@ class mobile
         $signupispis = '';
 
         if (!$session = facetoface_get_session($args->s)) {
-            throw new /moodle_exception('error:incorrectcoursemodulesession', 'facetoface');
+            throw new \moodle_exception('error:incorrectcoursemodulesession', 'facetoface');
         }
         if (!$facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface))) {
-            throw new /moodle_exception('error:incorrectfacetofaceid', 'facetoface');
+            throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
         }
         if (!$course = $DB->get_record('course', array('id' => $facetoface->course))) {
-            throw new /moodle_exception('error:coursemisconfigured', 'facetoface');
+            throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
         }
         if (!$cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id)) {
-            throw new /moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
+            throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
         }
 
         require_course_login($course, true, $cm);
@@ -141,7 +141,7 @@ class mobile
         if ($fromform = $mform->get_data()) { // Form submitted.
 
             if (empty($fromform->submitbutton)) {
-                throw new /moodle_exception('error:unknownbuttonclicked', 'facetoface', $returnurl);
+                throw new \moodle_exception('error:unknownbuttonclicked', 'facetoface', $returnurl);
             }
 
             // User can not update Manager's email (depreciated functionality).
@@ -181,11 +181,11 @@ class mobile
 
                     // This shouldn't happen. Bulk signup can only be enabled when multiple signups are allowed.
                     if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && facetoface_get_user_submissions($facetoface->id, $USER->id)) {
-                        throw new /moodle_exception('alreadysignedup', 'facetoface', $returnurl);
+                        throw new \moodle_exception('alreadysignedup', 'facetoface', $returnurl);
                     }
 
                     if (facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id)) {
-                        throw new /moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
+                        throw new \moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
                     }
 
                     if ($submissionid = facetoface_user_signup($session, $facetoface, $course, $fromform->discountcode, $fromform->notificationtype, $statuscode, false, false)) {
@@ -206,11 +206,11 @@ class mobile
             }
 
             if (!facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
-                throw new /moodle_exception('sessionisfull', 'facetoface', $returnurl);
+                throw new \moodle_exception('sessionisfull', 'facetoface', $returnurl);
             } else if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && facetoface_get_user_submissions($facetoface->id, $USER->id)) {
-                throw new /moodle_exception('alreadysignedup', 'facetoface', $returnurl);
+                throw new \moodle_exception('alreadysignedup', 'facetoface', $returnurl);
             } else if (facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id)) {
-                throw new /moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
+                throw new \moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
             } else if ($submissionid = facetoface_user_signup($session, $facetoface, $course, $fromform->discountcode, $fromform->notificationtype, $statuscode)) {
 
                 // Logging and events trigger.
@@ -245,7 +245,7 @@ class mobile
                 $event->add_record_snapshot('facetoface', $facetoface);
                 $event->trigger();
 
-                throw new /moodle_exception('error:problemsigningup', 'facetoface', $returnurl);
+                throw new \moodle_exception('error:problemsigningup', 'facetoface', $returnurl);
             }
 
             redirect($returnurl);
@@ -265,7 +265,7 @@ class mobile
         $signedup = facetoface_check_signup($facetoface->id);
 
         if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && $signedup && $signedup != $session->id) {
-            throw new /moodle_exception('error:signedupinothersession', 'facetoface', $returnurl);
+            throw new \moodle_exception('error:signedupinothersession', 'facetoface', $returnurl);
         }
 
         $signupispis .= $OUTPUT->box_start();
@@ -286,7 +286,7 @@ class mobile
         }
 
         if (!$isbulksignup && !$signedup && !facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
-            throw new /moodle_exception('sessionisfull', 'facetoface', $returnurl);
+            throw new \moodle_exception('sessionisfull', 'facetoface', $returnurl);
             $signupispis .= $OUTPUT->box_end();
             $signupispis .= $OUTPUT->footer($course);
             exit;
