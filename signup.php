@@ -292,7 +292,7 @@ if (!$signedup && !$managerrequired && !$hascap) {
 
 if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE || (!$signedup && !$managerrequired && $hascap)) {
     // Signup form.
-
+    $mform->display();
 }
 
 echo $OUTPUT->box_end();
