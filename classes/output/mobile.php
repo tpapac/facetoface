@@ -85,7 +85,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1 class="text-center">SIGNUP ' . $args->s . '</h1>',
+                    'html' => '<h1 class="text-center">SINUP' . $args->s</h1>',
                 ],
             ],
         ];

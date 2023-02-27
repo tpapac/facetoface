@@ -176,7 +176,7 @@ class mod_facetoface_renderermobile extends plugin_renderer_base {
                 $options .= html_writer::div('<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="xxx"
                         component="mod_facetoface" method="signup" 
-                        [args]="{s: <% session->id %>, session: <% session->facetoface %>}">
+                        [args]="{s: 45}">
                    
                 </ion-button></ion-label>
             </ion-item>');
