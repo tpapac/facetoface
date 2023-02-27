@@ -341,7 +341,8 @@ class mobile
                 'text' => '',
             ];
             $content->text = $mform->render();
-            $signupispis .= $content . '<IonButton className="ion-margin-top" type="submit" expand="block">
+            $signupispis .= $content;
+            $signupispis .= '<IonButton className="ion-margin-top" type="submit" expand="block">
     Login
   </IonButton>';
 
