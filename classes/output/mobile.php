@@ -86,7 +86,7 @@ class mobile
         $signupispis = '';
 
         if (!$session = facetoface_get_session($args->s)) {
-            throw new \moodle_exception('error:incorrectcoursemodulesession', 'facetoface');
+            throw new \moodle_exception($args->s, 'facetoface', '', 'asd', 'asdmkalsdmaslkd');
         }
         if (!$facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface))) {
             throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
@@ -346,7 +346,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $signupispis,
+                    'html' => $args->s,
                 ],
             ],
         ];
