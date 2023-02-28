@@ -97,19 +97,20 @@ class mobile
 //        } else {
 //            $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
 //        }
-//        $data = [
+        $data = [
+              'dir' => $dir,
 //            'cmid' => $cm->id,
 //            'course' => $course,
 //            'facetoface' => $facetoface,
 //            'locations' => $locations,
 //            'signupforstreamlink' => $signupforstreamlink,
 //            'customfields' => $customfields
-//        ];
+        ];
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h1>TEST</h1>',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
         ];
