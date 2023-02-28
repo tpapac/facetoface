@@ -90,6 +90,9 @@ class mobile
 //                get_string('signupforstream', 'facetoface')
 //            );
         }
+        else {
+            $signupforstreamlink = false;
+        }
         if (empty($upcomingarray) && empty($upcomingtbdarray)) {
             $emptyarray = true;
         } else {
