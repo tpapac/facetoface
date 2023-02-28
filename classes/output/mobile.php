@@ -11,12 +11,12 @@ class mobile
 
     public static function view_facetoface($args)
     {
-//        global $DB, $OUTPUT, $USER;
-//        $args = (object)$args;
-//        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-//        require_once($dir . '/config.php');
-//        require_once($dir . '/mod/facetoface/lib.php');
-//        require_once($dir . '/mod/facetoface/renderermobile.php');
+        global $DB, $OUTPUT, $USER;
+        $args = (object)$args;
+        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
+        require_once($dir . '/mod/facetoface/renderermobile.php');
 //        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
 //        $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
 //        $course = $DB->get_record('course', array('id' => $cm->course));
