@@ -17,7 +17,8 @@ $addons = [
             ],
         ],
         'lang' => [
-            ['allsessionsin', 'facetoface']
+            ['allsessionsin', 'facetoface'],
+            ['addsession', 'facetoface'],
         ],
     ],
 ];
