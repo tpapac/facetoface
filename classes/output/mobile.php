@@ -14,7 +14,7 @@ class mobile
         global $DB, $OUTPUT, $USER;
         $args = (object)$args;
         $dir = dirname(__FILE__, 5);
-        //require_once($dir . '/config.php');
+        require_once($dir . '/config.php');
         //require_once($dir . '/mod/facetoface/lib.php');
 //        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
 //        $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
