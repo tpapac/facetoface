@@ -100,8 +100,7 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
-        var_dump($customfields);
-        die();
+
         $data = [
               'dir' => $dir . '/mod/facetoface/lib.php',
             'cmid' => $cm->id,
