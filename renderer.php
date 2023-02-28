@@ -36,8 +36,8 @@ class mod_facetoface_renderer extends plugin_renderer_base {
      * Builds session list table given an array of sessions
      */
     public function print_session_list_table($customfields, $sessions, $viewattendees, $editsessions, $signuplinks = true) {
+        global $OUTPUT;
         $output = '';
-
         $tableheader = array();
         foreach ($customfields as $field) {
             if (!empty($field->showinsummary)) {
@@ -62,6 +62,11 @@ class mod_facetoface_renderer extends plugin_renderer_base {
         $table->data = array();
 
         foreach ($sessions as $session) {
+            $x = $OUTPUT->action_icon(new moodle_url('sessions.php', array('s' => $session->id)),
+                    new pix_icon('t/edit', get_string('edit', 'facetoface')), null,
+                    array('title' => get_string('editsession', 'facetoface'))) . ' ';
+            var_dump($x);
+            die();
             $isbookedsession = false;
             $bookedsession = $session->bookedsession;
             $sessionstarted = false;
