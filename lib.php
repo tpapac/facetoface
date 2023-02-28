@@ -3776,7 +3776,7 @@ function facetoface_get_session_customfields() {
             $customfields = array();
         }
     }
-    var_dump(json_encode($customfields));
+    var_dump(json_decode($customfields));
     die();
     return $customfields;
 }
