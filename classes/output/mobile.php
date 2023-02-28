@@ -100,6 +100,7 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
+        $podaci = ['1', '2', '3'];
 
         $data = [
               'dir' => $dir . '/mod/facetoface/lib.php',
@@ -108,7 +109,8 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'customfields' => $customfields
+            'customfields' => $customfields,
+            'podaci' => $podaci,
         ];
         return [
             'templates' => [
