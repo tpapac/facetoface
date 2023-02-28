@@ -17,17 +17,17 @@ class mobile
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
-        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
+//        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
         $course = $DB->get_record('course', array('id' => $cm->course));
         $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
-        $context = \context_module::instance($cmid->id);
+//        $context = \context_module::instance($cmid->id);
         $locations = false;
 
         $timenow = time();
-        $context = \context_course::instance($course->id);
-        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
-        $editsessions = has_capability('mod/facetoface:editsessions', $context);
+//        $context = \context_course::instance($course->id);
+//        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
+//        $editsessions = has_capability('mod/facetoface:editsessions', $context);
         $multiplesignups = $facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE;
         $bulksignup = $facetoface->multiplesignupmethod == MOD_FACETOFACE_SIGNUP_MULTIPLE_PER_ACTIVITY;
         $bookedsession = null;
