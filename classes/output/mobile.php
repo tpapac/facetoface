@@ -22,7 +22,7 @@ class mobile
         $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
         $course = $DB->get_record('course', array('id' => $cm->course));
-        $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
+        $facetoface = $DB->get_record('facetoface', array('id' => $cmid->instance));
         $context = \context_module::instance($cmid->id);
         $locations = false;
 
@@ -61,6 +61,7 @@ class mobile
         $upcomingarray = array();
         $previousarray = array();
         $upcomingtbdarray = array();
+
         if ($sessions = facetoface_get_sessions($facetoface->id, $location)) {
             foreach ($sessions as $session) {
 
