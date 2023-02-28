@@ -2,6 +2,7 @@
 
 namespace mod_facetoface\output;
 
+use mod_facetoface_signup_form;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -10,11 +11,13 @@ class mobile
 
     public static function view_facetoface($args)
     {
-        global $DB, $OUTPUT, $USER, $CFG;
-        $args = (object)$args;
-        $dir = $CFG->wwwroot;
+        $dir = dirname(__FILE__, 5);
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
+        global $DB, $OUTPUT, $USER;
+        $args = (object)$args;
+
+
 //        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
 //        $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
 //        $course = $DB->get_record('course', array('id' => $cm->course));
