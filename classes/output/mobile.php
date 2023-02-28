@@ -17,7 +17,6 @@ class mobile
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
-	    $f2frenderer = $PAGE->get_renderer('mod_facetoface');
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
         if ($args->courseid) {
             if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
@@ -66,7 +65,13 @@ class mobile
 
         self::print_session_list($course->id, $facetoface, $location);
 
+        $data = [
+            'cmid' => $cm->id,
+            'course' => $course,
+            'facetoface' => $facetoface,
+            'locations' => $locations
 
+        ];
 
 
         $ispis .= $OUTPUT->box_end();
@@ -74,7 +79,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $ispis,
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
         ];
@@ -257,6 +262,12 @@ class mobile
             $toform->manageremail = $manageremail;
             $mform->set_data($toform);
         }
+        else {
+            $toform = new stdClass();
+            $mform->set_data($toform);
+            $signupispis .= $mform->render();
+
+        }
 
 
 
@@ -341,8 +352,7 @@ class mobile
             $content = (object) [
                 'text' => '',
             ];
-            $content->text = $mform->render();
-            $signupispis .= $content->text;
+            $signupispis .= $mform->render();
         }
 
         $signupispis .= $OUTPUT->box_end();
