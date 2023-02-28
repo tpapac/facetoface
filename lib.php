@@ -3776,13 +3776,6 @@ function facetoface_get_session_customfields() {
             $customfields = array();
         }
     }
-    $customfieldsar = [];
-    foreach ($customfields as $ob) {
-        $ar = (array) $ob;
-        $customfieldsar[] = $ar;
-    }
-    var_dump($customfieldsar);
-    die();
     return $customfields;
 }
 
