@@ -100,7 +100,20 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
-        $podaci = ['1', '2', '3'];
+        $podaci = [
+            [
+                'name' => 'ante',
+                'prezime' => 'nesto'
+            ],
+            [
+                'name' => 'anteqwe',
+                'prezime' => 'nesto'
+            ],
+            [
+                'name' => 'antxycvgfbe',
+                'prezime' => 'nesto'
+            ],
+        ];
 
         $data = [
               'dir' => $dir . '/mod/facetoface/lib.php',
