@@ -100,20 +100,7 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
-        $podaci = [
-            [
-                'name' => 'ante',
-                'prezime' => 'nesto'
-            ],
-            [
-                'name' => 'anteqwe',
-                'prezime' => 'nesto'
-            ],
-            [
-                'name' => 'antxycvgfbe',
-                'prezime' => 'nesto'
-            ],
-        ];
+
 
         $data = [
               'dir' => $dir . '/mod/facetoface/lib.php',
@@ -122,14 +109,14 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'customfields' => implode(",", $customfields),
-            'podaci' => $podaci,
+            'customfields' => $customfields,
         ];
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
+                    'html' => '<p>' . $customfields . '</p>'
+                    //$OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
         ];
