@@ -45,7 +45,7 @@ class mobile
         $upcomingarray = array();
         $previousarray = array();
         $upcomingtbdarray = array();
-        if ($sessions = facetoface_get_sessions($facetoface->id, $location) ) {
+        if ($sessions = facetoface_get_sessions($facetoface->id, $location)) {
             foreach ($sessions as $session) {
 
                 $sessionstarted = false;
@@ -95,23 +95,24 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
-            $data = [
-                'cmid' => $cm->id,
-                'course' => $course,
-                'facetoface' => $facetoface,
-                'locations' => $locations,
-                'signupforstreamlink' => $signupforstreamlink,
-                'customfields' => $customfields
-            ];
-            return [
-                'templates' => [
-                    [
-                        'id' => 'main',
-                        'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
-                    ],
+        $data = [
+            'cmid' => $cm->id,
+            'course' => $course,
+            'facetoface' => $facetoface,
+            'locations' => $locations,
+            'signupforstreamlink' => $signupforstreamlink,
+            'customfields' => $customfields
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
-            ];
-        }
+            ],
+        ];
+    }
+}
 
 
     function get_locations($facetofaceid){
@@ -144,4 +145,3 @@ class mobile
     }
 
 
-}
