@@ -8,7 +8,21 @@
     neki test za count locations
 
 <%/countlocations%>
-<%#tableheader%>
-<%.%>
-<%/tableheader%>
 
+
+
+<ion-content class="ion-margin">
+    <ion-grid class="ion-margin">
+        <ion-row>
+            <%#tableheader%>
+            <ion-col><%.%></ion-col>
+            <%/tableheader%>
+        </ion-row>
+    </ion-grid>
+
+    <ion-item lines="none">
+        <ion-button color="primary" size="small" slot="end" routerLink="/material">
+            Material Design Table
+        </ion-button>
+    </ion-item>
+</ion-content>
