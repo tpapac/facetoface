@@ -12,8 +12,8 @@ class mobile
     public static function view_facetoface($args)
     {
         $dir = dirname(__FILE__, 5);
-        require_once($dir . '/config.php');
-        require_once($dir . '/mod/facetoface/lib.php');
+//        require_once($dir . '/config.php');
+//        require_once($dir . '/mod/facetoface/lib.php');
         global $DB, $OUTPUT, $USER;
         $args = (object)$args;
 
@@ -100,7 +100,7 @@ class mobile
 //            $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
 //        }
         $data = [
-              'dir' => $dir,
+              'dir' => $dir . '/mod/facetoface/lib.php',
 //            'cmid' => $cm->id,
 //            'course' => $course,
 //            'facetoface' => $facetoface,
