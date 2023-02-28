@@ -11,9 +11,9 @@ class mobile
 
     public static function view_facetoface($args)
     {
-        global $DB, $OUTPUT, $USER;
+        global $DB, $OUTPUT, $USER, $CFG;
         $args = (object)$args;
-        $dir = dirname(__FILE__, 5);
+        $dir = $CFG->wwwroot;
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
 //        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
