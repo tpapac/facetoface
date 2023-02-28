@@ -226,7 +226,8 @@ class mobile
                         get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
                 }
             } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
-                $options .= 'daj nest';
+                $options .= html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+                    get_string('signup', 'facetoface'));
             }
 
             $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
