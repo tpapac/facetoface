@@ -43,6 +43,11 @@ class mobile
             $bookedsession = $submission;
         }
         $customfields = facetoface_get_session_customfields();
+        $customfieldsar = [];
+        foreach ($customfields as $ob) {
+            $ar = (array) $ob;
+            $customfieldsar[] = $ar;
+        }
 
         $upcomingarray = array();
         $previousarray = array();
@@ -109,7 +114,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'customfields' => $customfields,
+            'customfields' => $customfieldsar,
         ];
         return [
             'templates' => [
