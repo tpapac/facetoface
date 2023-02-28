@@ -122,7 +122,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'customfields' => json_encode($customfields),
+            'customfields' => implode(",", $customfields),
             'podaci' => $podaci,
         ];
         return [
