@@ -2,7 +2,6 @@
 
 namespace mod_facetoface\output;
 
-use mod_facetoface_signup_form;
 
 defined('MOODLE_INTERNAL') || die();
 
