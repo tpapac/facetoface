@@ -43,12 +43,21 @@ class mobile
             $bookedsession = $submission;
         }
         $customfields = facetoface_get_session_customfields();
-        $customfieldsar = [];
-        foreach ($customfields as $ob) {
-            $ar = (array) $ob;
-            $customfieldsar[] = $ar;
+        $tableheader = array();
+        foreach ($customfields as $field) {
+            if (!empty($field->showinsummary)) {
+                $tableheader[] = format_string($field->name);
+            }
         }
-
+        $tableheader[] = get_string('date', 'facetoface');
+        $tableheader[] = get_string('time', 'facetoface');
+        if ($viewattendees) {
+            $tableheader[] = get_string('capacity', 'facetoface');
+        } else {
+            $tableheader[] = get_string('seatsavailable', 'facetoface');
+        }
+        $tableheader[] = get_string('status', 'facetoface');
+        $tableheader[] = get_string('options', 'facetoface');
         $upcomingarray = array();
         $previousarray = array();
         $upcomingtbdarray = array();
@@ -114,7 +123,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'customfields' => $customfieldsar,
+            'tableheader' => $tableheader,
         ];
         return [
             'templates' => [
