@@ -110,7 +110,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
+                    'html' => '<h1>TEST</h1>',
                 ],
             ],
         ];
