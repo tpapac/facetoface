@@ -115,8 +115,7 @@ class mobile
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<p>' . $customfields . '</p>'
-                    //$OUTPUT->render_from_template('mod_facetoface/form_view', $data),
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
         ];
