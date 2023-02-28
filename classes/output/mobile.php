@@ -18,72 +18,36 @@ class mobile
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
         $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
-        if ($args->courseid) {
-            if (!$cm = $DB->get_record('course_modules', array('id' => $args->courseid))) {
-                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
-            }
-            if (!$course = $DB->get_record('course', array('id' => $cm->course))) {
-                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
-            }
-            if (!$facetoface = $DB->get_record('facetoface', array('id' => $cm->instance))) {
-                throw new \moodle_exception('error:incorrectcoursemodule', 'facetoface');
-            }
-        } else if ($f) {
-            if (!$facetoface = $DB->get_record('facetoface', array('id' => $f))) {
-                throw new \moodle_exception('error:incorrectfacetofaceid', 'facetoface');
-            }
-            if (!$course = $DB->get_record('course', array('id' => $facetoface->course))) {
-                throw new \moodle_exception('error:coursemisconfigured', 'facetoface');
-            }
-            if (!$cm = get_coursemodule_from_instance('facetoface', $facetoface->id, $course->id)) {
-                throw new \moodle_exception('error:incorrectcoursemoduleid', 'facetoface');
-            }
-        } else {
-            throw new \moodle_exception('error:mustspecifycoursemodulefacetoface', 'facetoface');
-        }
-
-        $context = \context_module::instance($cmid->id);
-        global $ispis;
-        $ispis .= $OUTPUT->box_start();
-        $ispis .= $OUTPUT->heading(get_string('allsessionsin', 'facetoface', format_string($facetoface->name)), 2);
+        $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
+        $course = $DB->get_record('course', array('id' => $cm->course));
         $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
-        if ($facetoface->intro) {
-            $ispis .= $OUTPUT->box_start('generalbox', 'description');
-            $ispis .= format_module_intro('facetoface', $facetoface, $cm->id);
-            $ispis .= $OUTPUT->box_end();
-        } else {
-            $ispis .= \html_writer::empty_tag('br');
-        }
+        $context = \context_module::instance($cmid->id);
         $locations = self::get_locations($facetoface->id);
         if (count($locations) > 2) {
-            $ispis .= \html_writer::start_tag('form', array('action' => 'view.php', 'method' => 'get', 'class' => 'formlocation'));
-            $ispis .= \html_writer::start_tag('div');
-            $ispis .= \html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'f', 'value' => $facetoface->id));
-            $ispis .= \html_writer::select($locations, 'location', $location, '', array('onchange' => 'this.form.submit();'));
-            $ispis .= \html_writer::end_tag('div') . \html_writer::end_tag('form');
-        }
-
-        self::print_session_list($course->id, $facetoface, $location);
-
-        $data = [
-            'cmid' => $cm->id,
-            'course' => $course,
-            'facetoface' => $facetoface,
-            'locations' => $locations
-
-        ];
+            $countlocations = true;
+        } else {
+            $countlocations = false;
 
 
-        $ispis .= $OUTPUT->box_end();
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
+            // self::print_session_list($course->id, $facetoface, $location);
+
+            $data = [
+                'cmid' => $cm->id,
+                'course' => $course,
+                'facetoface' => $facetoface,
+                'locations' => $locations,
+                'countlocations' => $countlocations,
+            ];
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
+                    ],
                 ],
-            ],
-        ];
-    }
+            ];
+        }
+        }
     public static function signup($args) {
 	    $args = (object) $args;
         global $DB, $CFG, $OUTPUT, $USER;
