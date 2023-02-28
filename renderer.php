@@ -196,10 +196,10 @@ class mod_facetoface_renderer extends plugin_renderer_base {
 
             // Add row to table.
             $table->data[] = $row;
-            var_dump($table->data);
-            die();
-        }
 
+        }
+        var_dump($table->data);
+        die();
         $output .= html_writer::table($table);
 
         return $output;
