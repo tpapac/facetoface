@@ -22,7 +22,7 @@ class mobile
         $course = $DB->get_record('course', array('id' => $cm->course));
         $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
         $context = \context_module::instance($cmid->id);
-        $locations = self::get_locations($facetoface->id);
+        $locations = false;
 
         $timenow = time();
         $context = \context_course::instance($course->id);
