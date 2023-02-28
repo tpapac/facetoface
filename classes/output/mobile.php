@@ -101,7 +101,7 @@ class mobile
         }
         if (!empty($upcomingarray) && $bulksignup) {
             $firstsession = $sessions[array_keys($sessions)[0]];
-//            $signupforstreamlink = html_writer::link(
+//            $signupforstreamlink = \html_writer::link(
 //                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
 //                get_string('signupforstream', 'facetoface')
 //            );
@@ -207,7 +207,7 @@ class mobile
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
             }
             if ($viewattendees) {
-                $options .= html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+                $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('attendees', 'facetoface'),
                         array('title' => get_string('seeattendees', 'facetoface'))) . ' &nbsp; ';
                 $options .= $OUTPUT->action_icon(new moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
@@ -218,15 +218,15 @@ class mobile
                         array('title' => get_string('downloadods'))) . ' ' . '<br>';
             }
             if ($isbookedsession) {
-                $options .= html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('moreinfo', 'facetoface'),
                         array('title' => get_string('moreinfo', 'facetoface'))) . '<br>';
                 if ($session->allowcancellations) {
-                    $options .= html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+                    $options .= \html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
                 }
             } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
-                $options .= html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                     get_string('signup', 'facetoface'));
             }
 
