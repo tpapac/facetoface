@@ -17,7 +17,7 @@ class mobile
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
-        $cmid = get_coursemodule_from_id('facetoface', $args->cmid);
+        $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
         $course = $DB->get_record('course', array('id' => $cm->course));
         $facetoface = $DB->get_record('facetoface', array('id' => $cm->instance));
@@ -25,7 +25,7 @@ class mobile
         $locations = self::get_locations($facetoface->id);
 
         $timenow = time();
-        $context = context_course::instance($course->id);
+        $context = \context_course::instance($course->id);
         $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
         $editsessions = has_capability('mod/facetoface:editsessions', $context);
         $multiplesignups = $facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE;
@@ -85,10 +85,10 @@ class mobile
         }
         if (!empty($upcomingarray) && $bulksignup) {
             $firstsession = $sessions[array_keys($sessions)[0]];
-            $signupforstreamlink = html_writer::link(
-                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
-                get_string('signupforstream', 'facetoface')
-            );
+//            $signupforstreamlink = html_writer::link(
+//                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
+//                get_string('signupforstream', 'facetoface')
+//            );
         }
         if (empty($upcomingarray) && empty($upcomingtbdarray)) {
             $emptyarray = true;
@@ -114,34 +114,5 @@ class mobile
     }
 }
 
-
-    function get_locations($facetofaceid){
-        global $CFG, $DB;
-
-        $locationfieldid = $DB->get_field('facetoface_session_field', 'id', array('shortname' => 'location'));
-        if (!$locationfieldid) {
-            return array();
-        }
-
-        $sql = "SELECT DISTINCT d.data AS location
-              FROM {facetoface} f
-              JOIN {facetoface_sessions} s ON s.facetoface = f.id
-              JOIN {facetoface_session_data} d ON d.sessionid = s.id
-             WHERE f.id = ? AND d.fieldid = ?";
-
-        if ($records = $DB->get_records_sql($sql, array($facetofaceid, $locationfieldid))) {
-            $locationmenu[''] = get_string('alllocations', 'facetoface');
-
-            $i = 1;
-            foreach ($records as $record) {
-                $locationmenu[$record->location] = format_string($record->location);
-                $i++;
-            }
-
-            return $locationmenu;
-        }
-
-        return array();
-    }
 
 
