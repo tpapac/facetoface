@@ -12,18 +12,18 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="primary">
         <ion-title>
-            Ionic Table using Ionic grid component
+            <ion-row>
+                <%#tableheader%>
+                <ion-col><%.%></ion-col>
+                <%/tableheader%>
+            </ion-row>
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-margin">
     <ion-grid class="ion-margin">
-        <ion-row>
-            <%#tableheader%>
-            <ion-col><%.%></ion-col>
-            <%/tableheader%>
-        </ion-row>
+
         <%#row%>
         <ion-row>
             <%#.%> <ion-col><%.%></ion-col><%/.%>
