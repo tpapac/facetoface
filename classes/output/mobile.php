@@ -113,6 +113,7 @@ class mobile
         } else {
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
+        $signuplinks = true;
         foreach ($sessions as $session) {
             $isbookedsession = false;
             $bookedsession = $session->bookedsession;
