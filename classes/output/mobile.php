@@ -200,7 +200,8 @@ class mobile
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
                         new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
                         array('title' => get_string('editsession', 'facetoface'))) . ' ';
-                $options .= '<ion-icon name="logo-ionic">df</ion-icon>';
+                $options .= '<ion-icon name="logo-ionic">' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '</ion-icon>'
+                      ;
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
                         new \pix_icon('t/delete', get_string('delete', 'facetoface')), null,
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
