@@ -197,16 +197,18 @@ class mobile
             // Options.
             $options = '';
             if ($editsessions) {
-                $options .= 'test';
-//                    $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
-//                        new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
-//                        array('title' => get_string('editsession', 'facetoface'))) . ' ';
+                $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
+                        new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
+                        array('title' => get_string('editsession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)),
                         new \pix_icon('t/copy', get_string('copy', 'facetoface')), null,
                         array('title' => get_string('copysession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
                         new \pix_icon('t/delete', get_string('delete', 'facetoface')), null,
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
+                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
+                        new \pix_icon('f/spreadsheet', get_string('downloadexcel')), null,
+                        array('title' => get_string('downloadexcel'))) . ' ';
             }
             if ($viewattendees) {
                 $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
