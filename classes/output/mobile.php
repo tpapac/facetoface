@@ -28,8 +28,8 @@ class mobile
 
         $timenow = time();
         $context = \context_course::instance($course->id);
-        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
-        $editsessions = has_capability('mod/facetoface:editsessions', $context);
+        $viewattendees = \has_capability('mod/facetoface:viewattendees', $context);
+        $editsessions = \has_capability('mod/facetoface:editsessions', $context);
         $multiplesignups = $facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE;
         $bulksignup = $facetoface->multiplesignupmethod == MOD_FACETOFACE_SIGNUP_MULTIPLE_PER_ACTIVITY;
         $bookedsession = null;
