@@ -198,13 +198,13 @@ class mobile
             $options = '';
             if ($editsessions) {
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
-                        new \pic_icon('t/edit', get_string('edit', 'facetoface')), null,
+                        new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
                         array('title' => get_string('editsession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)),
-                        new \pic_icon('t/copy', get_string('copy', 'facetoface')), null,
+                        new \pix_icon('t/copy', get_string('copy', 'facetoface')), null,
                         array('title' => get_string('copysession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
-                        new \pic_icon('t/delete', get_string('delete', 'facetoface')), null,
+                        new \pix_icon('t/delete', get_string('delete', 'facetoface')), null,
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
             }
             if ($viewattendees) {
@@ -212,10 +212,10 @@ class mobile
                         get_string('attendees', 'facetoface'),
                         array('title' => get_string('seeattendees', 'facetoface'))) . ' &nbsp; ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
-                        new \pic_icon('f/spreadsheet', get_string('downloadexcel')), null,
+                        new \pix_icon('f/spreadsheet', get_string('downloadexcel')), null,
                         array('title' => get_string('downloadexcel'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'ods')),
-                        new \pic_icon('f/calc', get_string('downloadods')), null,
+                        new \pix_icon('f/calc', get_string('downloadods')), null,
                         array('title' => get_string('downloadods'))) . ' ' . '<br>';
             }
             if ($isbookedsession) {
