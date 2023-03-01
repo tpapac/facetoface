@@ -196,7 +196,7 @@ class mobile
 
             // Options.
             $options = '';
-            if (!$editsessions) {
+           // if (!$editsessions) {
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
                         new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
                         array('title' => get_string('editsession', 'facetoface'))) . ' ';
@@ -206,7 +206,7 @@ class mobile
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
                         new \pix_icon('t/delete', get_string('delete', 'facetoface')), null,
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
-            }
+          //  }
             if ($viewattendees) {
                 $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('attendees', 'facetoface'),
