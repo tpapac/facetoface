@@ -196,7 +196,7 @@ class mobile
 
             // Options.
             $options = '';
-            if ($editsessions) {
+            if (!$editsessions) {
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
                         new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
                         array('title' => get_string('editsession', 'facetoface'))) . ' ';
