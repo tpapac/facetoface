@@ -11,7 +11,7 @@ class mobile
 
     public static function view_facetoface($args)
     {
-        global $DB, $OUTPUT, $CFG, $PAGE;
+        global $DB, $OUTPUT, $CFG, $PAGE, $USER;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
@@ -28,8 +28,8 @@ class mobile
 
         $timenow = time();
         $context = \context_course::instance($course->id);
-        $viewattendees = \has_capability('mod/facetoface:viewattendees', $context);
-        $editsessions = \has_capability('mod/facetoface:editsessions', $context);
+        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
+        $editsessions = has_capability('mod/facetoface:editsessions', $context);
         $multiplesignups = $facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE;
         $bulksignup = $facetoface->multiplesignupmethod == MOD_FACETOFACE_SIGNUP_MULTIPLE_PER_ACTIVITY;
         $bookedsession = null;
@@ -196,17 +196,18 @@ class mobile
 
             // Options.
             $options = '';
-           // if (!$editsessions) {
-                $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
-                        new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
-                        array('title' => get_string('editsession', 'facetoface'))) . ' ';
+            if ($editsessions) {
+                $options .= 'test';
+//                    $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
+//                        new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
+//                        array('title' => get_string('editsession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)),
                         new \pix_icon('t/copy', get_string('copy', 'facetoface')), null,
                         array('title' => get_string('copysession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
                         new \pix_icon('t/delete', get_string('delete', 'facetoface')), null,
                         array('title' => get_string('deletesession', 'facetoface'))) . ' ';
-          //  }
+            }
             if ($viewattendees) {
                 $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('attendees', 'facetoface'),
