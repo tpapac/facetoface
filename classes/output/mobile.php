@@ -200,7 +200,7 @@ class mobile
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
                         new \pix_icon('t/edit', get_string('edit', 'facetoface')), null,
                         array('title' => get_string('editsession', 'facetoface'))) . ' ';
-                $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id)),
+                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
                         new \pix_icon('t/copy', get_string('copy', 'facetoface')), null,
                         array('title' => get_string('copysession', 'facetoface'))) . ' ';
                 $options .= $OUTPUT->action_icon(new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)),
