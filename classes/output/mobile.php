@@ -249,8 +249,16 @@ class mobile
             // Add row to table.
         }
         $arr = [];
+        $temp = [];
         foreach ($row as $item) {
-            $arr[] = array_combine($tableheader, $item);
+            $temp[] = array_combine($tableheader, $item);
+        }
+        foreach ($temp as $item) {
+            $temp2 = [];
+            foreach ($item as $key => $value) {
+                array_push($temp2, [$key, $value]);
+            }
+            array_push($arr, $temp2);
         }
         $data = [
             'dir' => $dir . '/mod/facetoface/lib.php',
@@ -269,7 +277,6 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
-            'otherdata' => ['myVar' => ["1", "2", "3"]],
         ];
     }
 
