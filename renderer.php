@@ -188,7 +188,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             var_dump($item);
         }
 
-//        var_dump($tableheader);
+       var_dump($tableheader);
         die();
     }
 }
