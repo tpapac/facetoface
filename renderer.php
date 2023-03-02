@@ -190,7 +190,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             $arr[] = array_combine($tableheader, $item);
         }
         $arr = (object) $arr;
-        var_dump($arr);
+        var_dump($row);
         die();
     }
 }
