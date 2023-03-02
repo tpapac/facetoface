@@ -253,6 +253,7 @@ class mobile
         $temp = [];
         $items = new \stdClass();
         $items->rows = $arr;
+        $items->counter = [];
 
 
         foreach ($row as $item) {
@@ -264,6 +265,7 @@ class mobile
                 array_push($temp2, [$key, $value]);
             }
             array_push($items->rows, $temp2);
+            $items->counter[] = 'x';
         }
 
         $data = [
