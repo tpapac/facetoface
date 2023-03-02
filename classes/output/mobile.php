@@ -276,6 +276,7 @@ class mobile
         $data = [
             's' => $args->s,
             'backtoallsessions' => $$args->backtoallsessions,
+            'test' => 'test'
 
         ];
         return [
