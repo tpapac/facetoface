@@ -273,6 +273,7 @@ class mobile
     public static function signup($args)
     {
         global $OUTPUT;
+        $args = (object) $args;
         $data = [
             's' => $args->s,
             'backtoallsessions' => $$args->backtoallsessions,
