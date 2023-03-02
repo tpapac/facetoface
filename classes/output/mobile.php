@@ -259,7 +259,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'row' => $arr,
+            'row' => $row,
             'tableheader' => $tableheader
         ];
         return [
@@ -269,7 +269,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
-            'otherdata' => ['myVar' => '$arr'],
+            'otherdata' => ['myVar' => $tableheader],
         ];
     }
 
