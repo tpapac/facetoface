@@ -190,7 +190,10 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             $temp[] = array_combine($tableheader, $item);
         }
         foreach ($temp as $item) {
-            var_dump($item);
+            foreach ($item as $key => $value)
+            {
+                var_dump($value);
+            }
         }
         die();
     }
