@@ -223,7 +223,7 @@ class mobile
             } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
-                        component="mod_certificate" method="signup"
+                        component="mod_facetoface" method="signup"
                         [args]="">
                     Signup
                 </ion-button></ion-label>
