@@ -248,7 +248,10 @@ class mobile
 
             // Add row to table.
         }
-
+        $arr = [];
+        foreach ($row as $item) {
+            $arr[] = array_combine($tableheader, $item);
+        }
         $data = [
             'dir' => $dir . '/mod/facetoface/lib.php',
             'cmid' => $cm->id,
@@ -256,8 +259,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'tableheader' => $tableheader,
-            'row' => $row,
+            'row' => $arr
         ];
         return [
             'templates' => [
