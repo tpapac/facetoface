@@ -188,8 +188,8 @@ class mod_facetoface_renderer extends plugin_renderer_base {
 
         $temp = [];
         $items = new \stdClass();
-        $items->rows = $arr;
-        $items->counter = [];
+        $items->tableheader = $tableheader;
+        $items->rows = $row;
 
 
         foreach ($row as $item) {
