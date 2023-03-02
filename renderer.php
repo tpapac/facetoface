@@ -184,11 +184,13 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             }
             // Add row to table.
         }
-
+        $arr = [];
         foreach ($row as $item) {
-            var_dump($item);
+            foreach ($item as $key => $value) {
+                $arr[] = $value;
+            }
         }
-        var_dump($tableheader);
+        var_dump($arr);
         die();
     }
 }
