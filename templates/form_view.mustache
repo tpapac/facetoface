@@ -26,6 +26,11 @@
 </ion-content>
 
 
-<ion-row *ngFor="let r of row">
-    x
-</ion-row>
+<ion-item *ngFor="let item of row">
+        <%#tableheader%>
+        <ion-row>
+            <ion-col><%.%></ion-col>
+            <ion-col>x </ion-col>
+        </ion-row>
+        <%/tableheader%>
+</ion-item>
