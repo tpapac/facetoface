@@ -276,7 +276,7 @@ class mobile
         $args = (object) $args;
         $data = [
             's' => $args->s,
-            'backtoallsessions' => $$args->backtoallsessions,
+            'backtoallsessions' => $args->backtoallsessions,
             'test' => $args->test,
 
         ];
