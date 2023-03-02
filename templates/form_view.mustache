@@ -26,11 +26,6 @@
 </ion-content>
 
 
-<%#row%>
-        <%#tableheader%>
-        <ion-row>
-            <ion-col><%.%></ion-col>
-            <ion-col><%{ <%{.}%> }%></ion-col>
-        </ion-row>
-        <%/tableheader%>
-<%/row%>
+<ion-row *ngFor="let r of row">
+    x
+</ion-row>
