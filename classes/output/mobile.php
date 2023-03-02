@@ -273,7 +273,7 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'row' => $row,
+            'row' => $items,
             'tableheader' => $tableheader
         ];
         return [
