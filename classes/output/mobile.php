@@ -197,10 +197,8 @@ class mobile
             // Options.
             $options = '';
             if ($editsessions) {
-                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="settings-outline"></ion-icon></a>'
-                ;
-                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="copy-outline"></ion-icon></a>'
-                      ;
+                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="settings-outline"></ion-icon></a>';
+                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="copy-outline"></ion-icon></a>';
                 $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)) . '"><ion-icon name="trash-outline"></ion-icon></a>';
             }
             if ($viewattendees) {
@@ -223,8 +221,13 @@ class mobile
                         get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
                 }
             } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
-                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                    get_string('signup', 'facetoface'));
+                $options .= '<ion-item>
+                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
+                        component="mod_certificate" method="signup"
+                        [args]="">
+                    Signup
+                </ion-button></ion-label>
+            </ion-item>';
             }
 
             $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
@@ -266,6 +269,24 @@ class mobile
             ],
         ];
     }
+
+
+    public static function signup($args)
+    {
+        global $OUTPUT;
+        $data = [
+
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
+                ],
+            ],
+        ];
+    }
+
 }
 
 
