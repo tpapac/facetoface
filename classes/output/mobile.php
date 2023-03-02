@@ -269,7 +269,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
-            'otherdata' => ['myVar' => $tableheader],
+            'otherdata' => ['myVar' => ["1", "2", "3"]],
         ];
     }
 
