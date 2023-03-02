@@ -224,7 +224,7 @@ class mobile
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="{test: test, s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
+                        [args]="{s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
                     Signup
                 </ion-button></ion-label>
             </ion-item>';
@@ -277,7 +277,6 @@ class mobile
         $data = [
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
-            'test' => $args->test,
 
         ];
         return [
