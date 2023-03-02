@@ -36,6 +36,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
      * Builds session list table given an array of sessions
      */
     public function print_session_list_table($customfields, $sessions, $viewattendees, $editsessions, $signuplinks = true) {
+        global $OUTPUT;
         $tableheader = array();
         foreach ($customfields as $field) {
             if (!empty($field->showinsummary)) {
