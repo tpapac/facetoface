@@ -43,6 +43,15 @@ class mod_facetoface_renderer extends plugin_renderer_base {
                 $tableheader[] = format_string($field->name);
             }
         }
+        $tableheader[] = get_string('date', 'facetoface');
+        $tableheader[] = get_string('time', 'facetoface');
+        if ($viewattendees) {
+            $tableheader[] = get_string('capacity', 'facetoface');
+        } else {
+            $tableheader[] = get_string('seatsavailable', 'facetoface');
+        }
+        $tableheader[] = get_string('status', 'facetoface');
+        $tableheader[] = get_string('options', 'facetoface');
         foreach ($sessions as $session) {
             $isbookedsession = false;
             $bookedsession = $session->bookedsession;
