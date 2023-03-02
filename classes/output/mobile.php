@@ -224,12 +224,11 @@ class mobile
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="">
+                        [args]="{s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
                     Signup
                 </ion-button></ion-label>
             </ion-item>';
             }
-
             $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
             if (empty($options)) {
                 $options = get_string('none', 'facetoface');
@@ -275,6 +274,8 @@ class mobile
     {
         global $OUTPUT;
         $data = [
+            's' => $args->s,
+            'backtoallsessions' => $$args->backtoallsessions,
 
         ];
         return [
