@@ -201,7 +201,6 @@ class mod_facetoface_renderer extends plugin_renderer_base {
                 array_push($temp2, [$key, $value]);
             }
             array_push($items->rows, $temp2);
-            $items->counter[] = 'x';
 
         }
         var_dump($items);
