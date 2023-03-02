@@ -268,6 +268,7 @@ class mobile
                     'id' => 'main',
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
+                'otherdata' =>  ['var' => $arr]
             ],
         ];
     }
