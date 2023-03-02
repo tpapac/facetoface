@@ -259,7 +259,8 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'row' => $arr
+            'row' => $arr,
+            'tableheader' => $tableheader
         ];
         return [
             'templates' => [
