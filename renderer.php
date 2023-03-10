@@ -197,6 +197,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             foreach ($item as $key => $value) {
                 array_push($temp2, [$key, $value]);
             }
+            array_push($items->rows, $temp2);
         }
 
 
