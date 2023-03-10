@@ -203,8 +203,10 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             array_push($items->rows, $temp2);
             $items->counter[] = 'x';
         }
+        $table= [];
 
-        var_dump($items);
+
+        var_dump($temp);
         die();
     }
 }
