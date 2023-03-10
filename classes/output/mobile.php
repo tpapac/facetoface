@@ -248,11 +248,10 @@ class mobile
 
             // Add row to table.
         }
-        $arr = [];
 
         $temp = [];
         $items = new \stdClass();
-        $items->rows = $arr;
+        $items->rows = [];
         $items->counter = [];
 
 

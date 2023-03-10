@@ -184,12 +184,9 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             }
             // Add row to table.
         }
-        $arr = [];
-
         $temp = [];
         $items = new \stdClass();
-        $items->rows = $arr;
-        $items->counter = [];
+        $items->rows = [];
 
 
         foreach ($row as $item) {
@@ -200,10 +197,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             foreach ($item as $key => $value) {
                 array_push($temp2, [$key, $value]);
             }
-            array_push($items->rows, $temp2);
-            $items->counter[] = 'x';
         }
-        $table= [];
 
 
         var_dump($temp);
