@@ -283,7 +283,10 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
-            'otherdata' => ['myVar' => $items],
+            'otherdata' => ['myVar' => [
+                ['header1', 'data1'],
+                ['header2', 'data2'],
+            ]],
         ];
     }
 
