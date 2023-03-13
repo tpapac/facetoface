@@ -206,5 +206,6 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             }
             $items[] = $inserti;
         }
+        var_dump($items);
     }
 }
