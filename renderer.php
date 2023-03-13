@@ -186,16 +186,23 @@ class mod_facetoface_renderer extends plugin_renderer_base {
         }
         $temp = [];
         $items = [];
+
+// Combine table header with row data
         foreach ($row as $item) {
-          $temp[] = array_combine($tableheader, $item);
+            $temp[] = array_combine($tableheader, $item);
         }
+
+// Create objects for each key-value pair
         foreach ($temp as $item) {
-            foreach ($item as $key, $value) {
+            foreach ($item as $key => $value) {
+                // Create a new object for each key-value pair
                 $insert = new stdClass();
-                $insert->header = $value;
-                $insert->value = $key;
+                $insert->header = $key;
+                $insert->value = $value;
+
+                // Add the object to the $items array
+                $items[] = $insert;
             }
-            $items[] = $insert;
         }
 
 
