@@ -265,16 +265,24 @@ class mobile
         $temp = [];
         $items = [];
 
-
+// Combine table header with row data
         foreach ($row as $item) {
             $temp[] = array_combine($tableheader, $item);
         }
+
+// Create objects for each key-value pair
         foreach ($temp as $item) {
-            $temp2 = [];
+            $inserti = [];
             foreach ($item as $key => $value) {
-                array_push($temp2, [$key, $value]);
+                // Create a new object for each key-value pair
+                $insert = new stdClass();
+                $insert->header = $key;
+                $insert->value = $value;
+
+                // Add the object to the $items array
+                $inserti[] = $insert;
             }
-            array_push($items, $temp2);
+            $items[] = $inserti;
         }
 
         $data = [
@@ -285,7 +293,7 @@ class mobile
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
             'tableheader' => $tableheader,
-            'rows' => $row
+            'rows' => $items
         ];
         return [
             'templates' => [
