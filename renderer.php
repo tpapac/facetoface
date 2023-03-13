@@ -189,8 +189,17 @@ class mod_facetoface_renderer extends plugin_renderer_base {
         foreach ($row as $item) {
           $temp[] = array_combine($tableheader, $item);
         }
+        foreach ($temp as $item) {
+            foreach ($item as $key, $value) {
+                $insert = new stdClass();
+                $insert->header = $value;
+                $insert->value = $key;
+            }
+            $items[] = $insert;
+        }
 
-        var_dump($temp);
+
+        var_dump($items);
         die();
     }
 }
