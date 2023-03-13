@@ -213,43 +213,44 @@ class mobile
 
             // Options.
             $options = '';
-            if ($editsessions) {
-                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="settings-outline"></ion-icon></a>';
-                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="copy-outline"></ion-icon></a>';
-                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)) . '"><ion-icon name="trash-outline"></ion-icon></a>';
-            }
-            if ($viewattendees) {
-                $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                        get_string('attendees', 'facetoface'),
-                        array('title' => get_string('seeattendees', 'facetoface'))) . ' &nbsp; ';
-                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
-                        new \pix_icon('f/spreadsheet', get_string('downloadexcel')), null,
-                        array('title' => get_string('downloadexcel'))) . ' ';
-                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'ods')),
-                        new \pix_icon('f/calc', get_string('downloadods')), null,
-                        array('title' => get_string('downloadods'))) . ' ' . '<br>';
-            }
-            if ($isbookedsession) {
-                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                        get_string('moreinfo', 'facetoface'),
-                        array('title' => get_string('moreinfo', 'facetoface'))) . '<br>';
-                if ($session->allowcancellations) {
-                    $options .= \html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                        get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
-                }
-            } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
-                $options .= '<ion-item>
-                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
-                        component="mod_facetoface" method="signup"
-                        [args]="{s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
-                    Signup
-                </ion-button></ion-label>
-            </ion-item>';
-            }
-            $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
-            if (empty($options)) {
-                $options = get_string('none', 'facetoface');
-            }
+//            if ($editsessions) {
+//                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="settings-outline"></ion-icon></a>';
+//                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'c' => 1)) . '"><ion-icon name="copy-outline"></ion-icon></a>';
+//                $options .= '<a href="' . new \moodle_url('sessions.php', array('s' => $session->id, 'd' => 1)) . '"><ion-icon name="trash-outline"></ion-icon></a>';
+//            }
+//            if ($viewattendees) {
+//                $options .= \html_writer::link('attendees.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+//                        get_string('attendees', 'facetoface'),
+//                        array('title' => get_string('seeattendees', 'facetoface'))) . ' &nbsp; ';
+//                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'xlsx')),
+//                        new \pix_icon('f/spreadsheet', get_string('downloadexcel')), null,
+//                        array('title' => get_string('downloadexcel'))) . ' ';
+//                $options .= $OUTPUT->action_icon(new \moodle_url('attendees.php', array('s' => $session->id, 'download' => 'ods')),
+//                        new \pix_icon('f/calc', get_string('downloadods')), null,
+//                        array('title' => get_string('downloadods'))) . ' ' . '<br>';
+//            }
+//            if ($isbookedsession) {
+//                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+//                        get_string('moreinfo', 'facetoface'),
+//                        array('title' => get_string('moreinfo', 'facetoface'))) . '<br>';
+//                if ($session->allowcancellations) {
+//                    $options .= \html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
+//                        get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
+//                }
+//            }
+//            else if (!$sessionstarted && !$bookedsession && $signuplinks) {
+//                $options .= '<ion-item>
+//                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
+//                        component="mod_facetoface" method="signup"
+//                        [args]="{s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
+//                    Signup
+//                </ion-button></ion-label>
+//            </ion-item>';
+//            }
+//            $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
+//            if (empty($options)) {
+//                $options = get_string('none', 'facetoface');
+//            }
             $sessionrow[] = $options;
 
             $row[] = $sessionrow;
