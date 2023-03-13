@@ -170,7 +170,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             if (empty($options)) {
                 $options = get_string('none', 'facetoface');
             }
-            //$sessionrow[] = $options;
+            $sessionrow[] = $options;
 
             $row[] = $sessionrow;
 
