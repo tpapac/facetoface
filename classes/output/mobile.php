@@ -262,20 +262,6 @@ class mobile
             }
             // Add row to table.
         }
-        $temp = [];
-        $items = [];
-
-
-        foreach ($row as $item) {
-            $temp[] = array_combine($tableheader, $item);
-        }
-        foreach ($temp as $item) {
-            $temp2 = [];
-            foreach ($item as $key => $value) {
-                array_push($temp2, [$key, $value]);
-            }
-            array_push($items, $temp2);
-        }
 
         $data = [
             'dir' => $dir . '/mod/facetoface/lib.php',
@@ -285,7 +271,7 @@ class mobile
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
             'tableheader' => $tableheader,
-            'rows' => $items
+            'rows' => $row
         ];
         return [
             'templates' => [
