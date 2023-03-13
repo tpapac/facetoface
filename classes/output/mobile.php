@@ -4,6 +4,8 @@ namespace mod_facetoface\output;
 
 
 
+use stdClass;
+
 defined('MOODLE_INTERNAL') || die();
 
 class mobile
