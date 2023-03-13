@@ -200,7 +200,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
         }
 
 
-        var_dump($temp2);
+        var_dump($items);
         die();
     }
 }
