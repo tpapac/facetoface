@@ -115,6 +115,21 @@ class mobile
             $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
         }
         $signuplinks = true;
+        $tableheader = array();
+        foreach ($customfields as $field) {
+            if (!empty($field->showinsummary)) {
+                $tableheader[] = format_string($field->name);
+            }
+        }
+        $tableheader[] = get_string('date', 'facetoface');
+        $tableheader[] = get_string('time', 'facetoface');
+        if ($viewattendees) {
+            $tableheader[] = get_string('capacity', 'facetoface');
+        } else {
+            $tableheader[] = get_string('seatsavailable', 'facetoface');
+        }
+        $tableheader[] = get_string('status', 'facetoface');
+        $tableheader[] = get_string('options', 'facetoface');
         foreach ($sessions as $session) {
             $isbookedsession = false;
             $bookedsession = $session->bookedsession;
@@ -245,14 +260,10 @@ class mobile
             } else if ($sessionfull) {
                 $row->attributes = array('class' => 'dimmed_text');
             }
-
             // Add row to table.
         }
-
         $temp = [];
-        $items = new \stdClass();
-        $items->rows = [];
-        $items->counter = [];
+        $items = [];
 
 
         foreach ($row as $item) {
@@ -263,8 +274,7 @@ class mobile
             foreach ($item as $key => $value) {
                 array_push($temp2, [$key, $value]);
             }
-            array_push($items->rows, $temp2);
-            $items->counter[] = 'x';
+            array_push($items, $temp2);
         }
 
         $data = [
@@ -274,7 +284,8 @@ class mobile
             'facetoface' => $facetoface,
             'locations' => $locations,
             'signupforstreamlink' => $signupforstreamlink,
-            'tableheader' => $tableheader
+            'tableheader' => $tableheader,
+            'rows' => $items
         ];
         return [
             'templates' => [
