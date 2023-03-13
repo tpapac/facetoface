@@ -1,10 +1,27 @@
 {{=<% %>=}}
 <%#rows%>
-    <b>neki red</b> <br>
+<ion-header [translucent] = "true">
+    <ion-toolbar color="primary">
+        <ion-title>
+            Title
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-margin">
+    <ion-grid class="ion-margin">
         <%#.%>
-            <b><%header%></b> <br>
-            <b><%{value}%></b> <br>
-
+        <ion-row>
+            <ion-col><%header%></ion-col>
+            <ion-col><%{value}%></ion-col>
+        </ion-row>
         <%/.%>
-<%/rows%>
+    </ion-grid>
+
+    <ion-item lines="none">
+        <ion-button color="primary" size="small" slot="end" routerLink="/material">
+            Material Design Table
+        </ion-button>
+    </ion-item>
+</ion-content>
+
 
