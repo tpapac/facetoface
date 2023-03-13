@@ -194,6 +194,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
 
 // Create objects for each key-value pair
         foreach ($temp as $item) {
+            $inserti = [];
             foreach ($item as $key => $value) {
                 // Create a new object for each key-value pair
                 $insert = new stdClass();
@@ -201,8 +202,9 @@ class mod_facetoface_renderer extends plugin_renderer_base {
                 $insert->value = $value;
 
                 // Add the object to the $items array
-                $items[] = $insert;
+                $inserti[] = $insert;
             }
+            $items[] = $inserti;
         }
 
 
