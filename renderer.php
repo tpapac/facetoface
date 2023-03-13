@@ -52,6 +52,78 @@ class mod_facetoface_renderer extends plugin_renderer_base {
         }
         $tableheader[] = get_string('status', 'facetoface');
         $tableheader[] = get_string('options', 'facetoface');
+        $upcomingarray = array();
+        $previousarray = array();
+        $upcomingtbdarray = array();
+
+        if ($sessions = facetoface_get_sessions($facetoface->id, $location)) {
+            foreach ($sessions as $session) {
+
+                $sessionstarted = false;
+                $sessionfull = false;
+                $sessionwaitlisted = false;
+                $isbookedsession = false;
+
+                $sessiondata = $session;
+                $sessiondata->bookedsession = $multiplesignups ? ($bookedsessionmap[$session->id] ?? []) : $bookedsession;
+
+                // Add custom fields to sessiondata.
+                $customdata = $DB->get_records('facetoface_session_data', array('sessionid' => $session->id), '', 'fieldid, data');
+                $sessiondata->customfielddata = $customdata;
+
+                // Is session waitlisted.
+                if (!$session->datetimeknown) {
+                    $sessionwaitlisted = true;
+                }
+
+                // Check if session is started.
+                $sessionstarted = facetoface_has_session_started($session, $timenow);
+                if ($session->datetimeknown && $sessionstarted && facetoface_is_session_in_progress($session, $timenow)) {
+                    $sessionstarted = true;
+                } else if ($session->datetimeknown && $sessionstarted) {
+                    $sessionstarted = true;
+                }
+
+                // Put the row in the right table.
+                if ($sessionstarted) {
+                    $previousarray[] = $sessiondata;
+                } else if ($sessionwaitlisted) {
+                    $upcomingtbdarray[] = $sessiondata;
+                } else { // Normal scheduled session.
+                    $upcomingarray[] = $sessiondata;
+                }
+            }
+        }
+        if (!empty($upcomingarray) && $bulksignup) {
+            $firstsession = $sessions[array_keys($sessions)[0]];
+//            $signupforstreamlink = \html_writer::link(
+//                'signup.php?s=' . $firstsession->id . '&backtoallsessions=' . $session->facetoface,
+//                get_string('signupforstream', 'facetoface')
+//            );
+        } else {
+            $signupforstreamlink = false;
+        }
+        if (empty($upcomingarray) && empty($upcomingtbdarray)) {
+            $emptyarray = true;
+        } else {
+            $upcomingarray = array_merge($upcomingarray, $upcomingtbdarray);
+        }
+        $signuplinks = true;
+        $tableheader = array();
+        foreach ($customfields as $field) {
+            if (!empty($field->showinsummary)) {
+                $tableheader[] = format_string($field->name);
+            }
+        }
+        $tableheader[] = get_string('date', 'facetoface');
+        $tableheader[] = get_string('time', 'facetoface');
+        if ($viewattendees) {
+            $tableheader[] = get_string('capacity', 'facetoface');
+        } else {
+            $tableheader[] = get_string('seatsavailable', 'facetoface');
+        }
+        $tableheader[] = get_string('status', 'facetoface');
+        $tableheader[] = get_string('options', 'facetoface');
         foreach ($sessions as $session) {
             $isbookedsession = false;
             $bookedsession = $session->bookedsession;
@@ -184,23 +256,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             }
             // Add row to table.
         }
-        $temp = [];
-        $items = [];
-
-
-        foreach ($row as $item) {
-            $temp[] = array_combine($tableheader, $item);
-        }
-        foreach ($temp as $item) {
-            $temp2 = [];
-            foreach ($item as $key => $value) {
-                array_push($temp2, [$key, $value]);
-            }
-            array_push($items, $temp2);
-        }
-
-
-        var_dump($items);
+        var_dump($row);
         die();
     }
 }
