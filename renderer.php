@@ -287,7 +287,7 @@ class mod_facetoface_renderer extends plugin_renderer_base {
             }
             // Add row to table.
         }
-        var_dump($row);
+        var_dump('asd');
         die();
     }
 }
