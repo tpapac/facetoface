@@ -250,7 +250,7 @@ class mobile
             if (empty($options)) {
                 $options = get_string('none', 'facetoface');
             }
-            $sessionrow[] = $options;
+            //$sessionrow[] = $options;
 
             $row[] = $sessionrow;
 
