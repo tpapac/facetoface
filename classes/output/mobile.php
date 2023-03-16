@@ -351,7 +351,7 @@ class mobile
             }
             $table->data[] = array($strdatetime, $html);
         } else {
-           $table->data[] = array($strdatetime, html_writer::tag('i', 'wait-listed'));
+           $table->data[] = array($strdatetime, \html_writer::tag('i', 'wait-listed'));
         }
         $signupcount = facetoface_get_num_attendees($session->id);
         $placesleft = $session->capacity - $signupcount;
