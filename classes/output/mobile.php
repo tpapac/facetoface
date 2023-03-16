@@ -336,7 +336,10 @@ class mobile
                     $data = $customdata[$field->id]->data;
                 }
             }
-            $table->data[] = array(str_replace(' ', '&nbsp;', $field->name), $data);
+            $insert = new stdClass();
+            $insert->header = str_replace(' ', '&nbsp;', $field->name);
+            $insert->value = $data;
+            $table->data[] = $insert;
         }
         $strdatetime = str_replace(' ', '&nbsp;', 'xxx');
         if ($session->datetimeknown) {
@@ -349,41 +352,71 @@ class mobile
                 $timefinish = \userdate($date->timefinish, 'strftimedatetime');
                 $html .= "$timestart &ndash; $timefinish";
             }
-            $table->data[] = array($strdatetime, $html);
+            $insert = new stdClass();
+            $insert->header = $strdatetime;
+            $insert->value = $html;
+            $table->data[] = $insert;
         } else {
-           $table->data[] = array($strdatetime, \html_writer::tag('i', 'wait-listed'));
+            $insert = new stdClass();
+            $insert->header = $strdatetime;
+            $insert->value = \html_writer::tag('i', 'wait-listed');
+           $table->data[] = $insert;
         }
         $signupcount = facetoface_get_num_attendees($session->id);
         $placesleft = $session->capacity - $signupcount;
         if ($viewattendees) {
             if ($session->allowoverbook) {
-                $table->data[] = array(get_string('capacity', 'facetoface'), $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'facetoface')).')');
+                $insert = new stdClass();
+                $insert->header = get_string('capacity', 'facetoface');
+                $insert->value = $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'facetoface')).')';
+                $table->data[] = $insert;
             } else {
-                $table->data[] = array(get_string('capacity', 'facetoface'), $session->capacity);
+                $insert = new stdClass();
+                $insert->header = get_string('capacity', 'facetoface');
+                $insert->value = $session->capacity;
+                $table->data[] = $insert;
             }
         }
         $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
         if ($facetoface->approvalreqd) {
-            $table->data[] = array('', get_string('sessionrequiresmanagerapproval', 'facetoface'));
+            $insert = new stdClass();
+            $insert->header = '';
+            $insert->value = et_string('sessionrequiresmanagerapproval', 'facetoface');
+            $table->data[] = $insert;
         }
 
         // Display waitlist notification.
         if (!$hidesignup && $session->allowoverbook && $placesleft < 1) {
-            $table->data[] = array('', get_string('userwillbewaitlisted', 'facetoface'));
+            $insert = new stdClass();
+            $insert->header = '';
+            $insert->value = get_string('userwillbewaitlisted', 'facetoface');
+            $table->data[] = $insert;
         }
 
         if (!empty($session->duration)) {
-            $table->data[] = array(get_string('duration', 'facetoface'), facetoface_format_duration($session->duration));
+            $insert = new stdClass();
+            $insert->header = get_string('duration', 'facetoface');
+            $insert->value = facetoface_format_duration($session->duration);
+            $table->data[] = $insert;
         }
         if (!empty($session->normalcost)) {
-            $table->data[] = array(get_string('normalcost', 'facetoface'), format_cost($session->normalcost));
+            $insert = new stdClass();
+            $insert->header = get_string('normalcost', 'facetoface');
+            $insert->value = format_cost($session->normalcost);
+            $table->data[] = $insert;
         }
         if (!empty($session->discountcost)) {
-            $table->data[] = array(get_string('discountcost', 'facetoface'), format_cost($session->discountcost));
+            $insert = new stdClass();
+            $insert->header = get_string('discountcost', 'facetoface');
+            $insert->value = format_cost($session->discountcost);
+            $table->data[] = $insert;
         }
         if (!empty($session->details)) {
             $details = clean_text($session->details, FORMAT_HTML);
-            $table->data[] = array(get_string('details', 'facetoface'), format_text($details, FORMAT_HTML, array('context' => \context_system::instance())));
+            $insert = new stdClass();
+            $insert->header = get_string('details', 'facetoface');
+            $insert->value = format_text($details, FORMAT_HTML, array('context' => \context_system::instance()));
+            $table->data[] = $insert;
         }
         if ($trainerroles) {
 
@@ -401,10 +434,14 @@ class mobile
                    // $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
                    // $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
                 }
-
-                $table->data[] = array($rolename, implode(', ', $trainernames));
+//                $insert = new stdClass();
+//                $insert->header = $rolename;
+//                $insert->value = format_text($details, FORMAT_HTML, array('context' => \context_system::instance()));
+//                $table->data[] = $insert;
+//                $table->data[] = array($rolename, implode(', ', $trainernames));
             }
         }
+
         // Display trainers.
       $trainerroles = facetoface_get_trainer_roles();
         $data = [
