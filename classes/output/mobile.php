@@ -383,7 +383,7 @@ class mobile
         }
         if (!empty($session->details)) {
             $details = clean_text($session->details, FORMAT_HTML);
-            $table->data[] = array(get_string('details', 'facetoface'), format_text($details, FORMAT_HTML, array('context' => context_system::instance())));
+            $table->data[] = array(get_string('details', 'facetoface'), format_text($details, FORMAT_HTML, array('context' => \context_system::instance())));
         }
         if ($trainerroles) {
 
