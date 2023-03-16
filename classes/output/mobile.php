@@ -341,7 +341,7 @@ class mobile
             $insert->value = $data;
             $table->data[] = $insert;
         }
-        $strdatetime = str_replace(' ', '&nbsp;', 'xxx');
+        $strdatetime = str_replace(' ', '&nbsp;', get_string('sessiondatetime', 'facetoface'));
         if ($session->datetimeknown) {
             $html = '';
             foreach ($session->sessiondates as $date) {
