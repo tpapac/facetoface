@@ -311,6 +311,7 @@ class mobile
 
     public static function signup($args)
     {
+        $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
         require_once($dir . '/mod/facetoface/lib.php');
