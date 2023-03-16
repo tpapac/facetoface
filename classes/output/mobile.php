@@ -407,7 +407,7 @@ class mobile
 //        }
 
         // Display trainers.
-        $trainerroles = facetoface_get_trainer_roles();
+       // $trainerroles = facetoface_get_trainer_roles();
         $data = [
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
