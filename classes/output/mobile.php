@@ -313,7 +313,7 @@ class mobile
     {
         global $OUTPUT, $DB;
         $args = (object) $args;
-        $session = facetoface_get_session($args->s);
+        $session = \facetoface_get_session($args->s);
         $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
         $course = $DB->get_record('course', array('id' => $facetoface->course));
         $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
