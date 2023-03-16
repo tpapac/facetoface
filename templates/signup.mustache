@@ -31,8 +31,8 @@
 
 <ion-item>
     <ion-label>Notification type</ion-label>
-    <ion-select value="MDL_F2F_TEXT" [(ngModel)]="notification" name="notification">
-        <ion-select-option value="MDL_F2F_TEXT">Email Notification only</ion-select-option>
+    <ion-select [(ngModel)]="notification" name="notification">
+        <ion-select-option value="MDL_F2F_TEXT" selected>Email Notification only</ion-select-option>
         <ion-select-option value="MDL_F2F_BOTH">Email Notification and iCalendar Appointment</ion-select-option>
         <ion-select-option value="MDL_F2F_ICAL">iCalendar Appointment only</ion-select-option>
     </ion-select>
