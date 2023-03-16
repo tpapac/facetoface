@@ -364,6 +364,7 @@ class mobile
         }
         $signupcount = facetoface_get_num_attendees($session->id);
         $placesleft = $session->capacity - $signupcount;
+        $calendaroutput = false;
         if ($viewattendees) {
             if ($session->allowoverbook) {
                 $insert = new stdClass();
@@ -376,6 +377,12 @@ class mobile
                 $insert->value = $session->capacity;
                 $table->data[] = $insert;
             }
+        }
+        else if (!$calendaroutput) {
+            $insert = new stdClass();
+            $insert->header = get_string('seatsavailable', 'facetoface');
+            $insert->value = max(0, $placesleft);
+            $table->data[] = $insert;
         }
         $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
         if ($facetoface->approvalreqd) {
