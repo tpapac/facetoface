@@ -311,13 +311,11 @@ class mobile
 
     public static function signup($args)
     {
-        global $OUTPUT, $DB;
+        global $DB, $OUTPUT, $CFG, $PAGE, $USER;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-       // require_once($dir . '/config.php');
-       // require_once($dir . '/mod/facetoface/lib.php');
-        $dir1 = $dir . '/config.php';
-        $dir2 = $dir . '/mod/facetoface/lib.php';
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
 
 //        $session = \facetoface_get_session($args->s);
 //        $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
