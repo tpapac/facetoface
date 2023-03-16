@@ -29,7 +29,7 @@ class mobile
         $locations = false;
 
         $timenow = time();
-        $context = context_course::instance($course->id);
+        $context = \context_course::instance($course->id);
         $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
         $editsessions = has_capability('mod/facetoface:editsessions', $context);
         $multiplesignups = $facetoface->signuptype == MOD_FACETOFACE_SIGNUP_MULTIPLE;
