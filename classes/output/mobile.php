@@ -415,7 +415,7 @@ class mobile
             $details = clean_text($session->details, FORMAT_HTML);
             $insert = new stdClass();
             $insert->header = get_string('details', 'facetoface');
-            $insert->value = format_text($details, FORMAT_HTML, array('context' => \context_system::instance()));
+            $insert->value = $details;
             $table->data[] = $insert;
         }
         if ($trainerroles) {
