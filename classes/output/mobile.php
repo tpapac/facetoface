@@ -407,7 +407,8 @@ class mobile
         $data = [
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
-            'session' => $session
+            'session' => $session,
+            'table' => $table->data,
         ];
         return [
             'templates' => [
