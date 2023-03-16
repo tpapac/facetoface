@@ -321,7 +321,7 @@ class mobile
         $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
         $course = $DB->get_record('course', array('id' => $facetoface->course));
         $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
-        $context = context_course::instance($course->id);
+        $context = \context_course::instance($course->id);
         $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
         $customfields = facetoface_get_session_customfields();
         $customdata = $DB->get_records('facetoface_session_data', array('sessionid' => $session->id), '', 'fieldid, data');
