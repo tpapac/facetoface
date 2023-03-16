@@ -411,7 +411,7 @@ class mobile
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
             'session' => $session,
-            ddddd'table' => $table->data,
+            'table' => $table->data,
         ];
         return [
             'templates' => [
