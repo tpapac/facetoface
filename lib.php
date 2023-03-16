@@ -3674,8 +3674,9 @@ function facetoface_print_session($session, $showcapacity, $calendaroutput=false
             $table->data[] = array($rolename, implode(', ', $trainernames));
         }
     }
-
-    return html_writer::table($table, $return);
+    var_dump($table);
+    die();
+   // return html_writer::table($table, $return);
 }
 
 /**

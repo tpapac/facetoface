@@ -311,12 +311,103 @@ class mobile
 
     public static function signup($args)
     {
-        global $OUTPUT;
+        global $OUTPUT, $DB;
         $args = (object) $args;
+        $session = facetoface_get_session($args->s);
+        $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
+        $course = $DB->get_record('course', array('id' => $facetoface->course));
+        $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
+        $context = context_course::instance($course->id);
+        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
+        $customfields = facetoface_get_session_customfields();
+        $customdata = $DB->get_records('facetoface_session_data', array('sessionid' => $session->id), '', 'fieldid, data');
+        $table = new stdClass();
+        foreach ($customfields as $field) {
+            $data = '';
+            if (!empty($customdata[$field->id])) {
+                if (CUSTOMFIELD_TYPE_MULTISELECT == $field->type) {
+                    $values = explode(CUSTOMFIELD_DELIMITER, $customdata[$field->id]->data);
+                    $data = implode(\html_writer::empty_tag('br'), $values);
+                } else {
+                    $data = $customdata[$field->id]->data;
+                }
+            }
+            $table->data[] = array(str_replace(' ', '&nbsp;', $field->name), $data);
+        }
+        $strdatetime = str_replace(' ', '&nbsp;', 'xxx');
+        if ($session->datetimeknown) {
+            $html = '';
+            foreach ($session->sessiondates as $date) {
+                if (!empty($html)) {
+                    $html .= '<br>';
+                }
+                $timestart = \userdate($date->timestart, 'strftimedatetime');
+                $timefinish = \userdate($date->timefinish, 'strftimedatetime');
+                $html .= "$timestart &ndash; $timefinish";
+            }
+            $table->data[] = array($strdatetime, $html);
+        } else {
+            $table->data[] = array($strdatetime, html_writer::tag('i', 'wait-listed'));
+        }
+        $signupcount = facetoface_get_num_attendees($session->id);
+        $placesleft = $session->capacity - $signupcount;
+        if ($viewattendees) {
+            if ($session->allowoverbook) {
+                $table->data[] = array(get_string('capacity', 'facetoface'), $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'facetoface')).')');
+            } else {
+                $table->data[] = array(get_string('capacity', 'facetoface'), $session->capacity);
+            }
+        }
+        $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
+        if ($facetoface->approvalreqd) {
+            $table->data[] = array('', get_string('sessionrequiresmanagerapproval', 'facetoface'));
+        }
+
+        // Display waitlist notification.
+        if (!$hidesignup && $session->allowoverbook && $placesleft < 1) {
+            $table->data[] = array('', get_string('userwillbewaitlisted', 'facetoface'));
+        }
+
+        if (!empty($session->duration)) {
+            $table->data[] = array(get_string('duration', 'facetoface'), facetoface_format_duration($session->duration));
+        }
+        if (!empty($session->normalcost)) {
+            $table->data[] = array(get_string('normalcost', 'facetoface'), format_cost($session->normalcost));
+        }
+        if (!empty($session->discountcost)) {
+            $table->data[] = array(get_string('discountcost', 'facetoface'), format_cost($session->discountcost));
+        }
+        if (!empty($session->details)) {
+            $details = clean_text($session->details, FORMAT_HTML);
+            $table->data[] = array(get_string('details', 'facetoface'), format_text($details, FORMAT_HTML, array('context' => context_system::instance())));
+        }
+        if ($trainerroles) {
+
+            // Get trainers.
+            $trainers = facetoface_get_trainers($session->id);
+            foreach ($trainerroles as $role => $rolename) {
+                $rolename = $rolename->name;
+
+                if (empty($trainers[$role])) {
+                    continue;
+                }
+
+                $trainernames = array();
+                foreach ($trainers[$role] as $trainer) {
+                   // $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
+                   // $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
+                }
+
+                $table->data[] = array($rolename, implode(', ', $trainernames));
+            }
+        }
+
+        // Display trainers.
+        $trainerroles = facetoface_get_trainer_roles();
         $data = [
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
-
+            'session' => $session
         ];
         return [
             'templates' => [
