@@ -448,8 +448,8 @@ class mobile
 //                $table->data[] = array($rolename, implode(', ', $trainernames));
             }
         }
-        $js = '
-    console.log("pocetak")
+        $js =
+    'console.log("pocetak")
     const managerInput = document.getElementById("manager");
     const notificationInput = document.getElementById("notification");
     const submitBtn = document.getElementById("submitBtn");
@@ -466,8 +466,8 @@ class mobile
         else {
             submitBtn.disabled = true
         }
-    }
-"
+    }';
+
 
         // Display trainers.
       $trainerroles = facetoface_get_trainer_roles();
@@ -484,7 +484,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
-            'javascript' => ''
+            'javascript' => $js,
         ];
     }
 
