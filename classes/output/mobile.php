@@ -503,7 +503,7 @@ class mobile
                 if ($submissionid = facetoface_user_signup($session, $facetoface, $course, $fromform->discountcode, $fromform->notificationtype, $statuscode, false, false)) {
                     // Logging and events trigger.
                     $params = array(
-                        'context'  => $contextmodule,
+                        'context' => $contextmodule,
                         'objectid' => $session->id
                     );
                     $event = \mod_facetoface\event\signup_success::create($params);
@@ -527,7 +527,7 @@ class mobile
 
             // Logging and events trigger.
             $params = array(
-                'context'  => $contextmodule,
+                'context' => $contextmodule,
                 'objectid' => $session->id
             );
             $event = \mod_facetoface\event\signup_success::create($params);
@@ -544,18 +544,19 @@ class mobile
             }
 
             $timemessage = 4;
-        $data = [
-            'manager' => $args->manager,
-            'notification' => $args->notification,
-        ];
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('mod_facetoface/signupConfirm', $data),
+            $data = [
+                'manager' => $args->manager,
+                'notification' => $args->notification,
+            ];
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => $OUTPUT->render_from_template('mod_facetoface/signupConfirm', $data),
+                    ],
                 ],
-            ],
-        ];
+            ];
+        }
     }
 }
 
