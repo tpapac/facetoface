@@ -468,8 +468,8 @@ class mobile
     const managerInput = document.getElementById("manager");
     const notificationInput = document.getElementById("notification");
     const submitBtn = document.getElementById("submitBtn");
-    managerInput.addEventListener("input", updateButtonState);
-    notificationInput.addEventListener("input", updateButtonState);
+    managerInput.addEventListener("change", updateButtonState);
+    notificationInput.addEventListener("change", updateButtonState);
     function updateButtonState() {
         window.console.log("pocetak");
         console.log("nesto");
