@@ -469,84 +469,10 @@ class mobile
 
     public static function signupConfirm($args)
     {
-        global $OUTPUT;
-        $args = (object)$args;
-        if (!$session->datetimeknown) {
-            $statuscode = MDL_F2F_STATUS_WAITLISTED;
-        } else if (facetoface_get_num_attendees($session->id) < $session->capacity) {
-
-            // Save available.
-            $statuscode = MDL_F2F_STATUS_BOOKED;
-        } else {
-            $statuscode = MDL_F2F_STATUS_WAITLISTED;
-        }
-
-        if ($isbulksignup) {
-            $error = '';
-            $message = get_string('bookingcompleted', 'facetoface');
-
-            foreach (facetoface_get_future_sessions($facetoface->id) as $session) {
-                if (!facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
-                    $error = html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('somesessionsfull', 'facetoface');
-                    continue;
-                }
-
-                // This shouldn't happen. Bulk signup can only be enabled when multiple signups are allowed.
-                if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && facetoface_get_user_submissions($facetoface->id, $USER->id)) {
-                    throw new moodle_exception('alreadysignedup', 'facetoface', $returnurl);
-                }
-
-                if (facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id)) {
-                    throw new moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
-                }
-
-                if ($submissionid = facetoface_user_signup($session, $facetoface, $course, $fromform->discountcode, $fromform->notificationtype, $statuscode, false, false)) {
-                    // Logging and events trigger.
-                    $params = array(
-                        'context' => $contextmodule,
-                        'objectid' => $session->id
-                    );
-                    $event = \mod_facetoface\event\signup_success::create($params);
-                    $event->add_record_snapshot('facetoface_sessions', $session);
-                    $event->add_record_snapshot('facetoface', $facetoface);
-                    $event->trigger();
-                }
-            }
-
-            $timemessage = 4;
-            redirect($returnurl, $message . $error, $timemessage);
-        }
-
-        if (!facetoface_session_has_capacity($session, $context) && (!$session->allowoverbook)) {
-            throw new moodle_exception('sessionisfull', 'facetoface', $returnurl);
-        } else if ($facetoface->signuptype == MOD_FACETOFACE_SIGNUP_SINGLE && facetoface_get_user_submissions($facetoface->id, $USER->id)) {
-            throw new moodle_exception('alreadysignedup', 'facetoface', $returnurl);
-        } else if (facetoface_manager_needed($facetoface) && !facetoface_get_manageremail($USER->id)) {
-            throw new moodle_exception('error:manageremailaddressmissing', 'facetoface', $returnurl);
-        } else if ($submissionid = facetoface_user_signup($session, $facetoface, $course, $fromform->discountcode, $fromform->notificationtype, $statuscode)) {
-
-            // Logging and events trigger.
-            $params = array(
-                'context' => $contextmodule,
-                'objectid' => $session->id
-            );
-            $event = \mod_facetoface\event\signup_success::create($params);
-            $event->add_record_snapshot('facetoface_sessions', $session);
-            $event->add_record_snapshot('facetoface', $facetoface);
-            $event->trigger();
-
-            $message = get_string('bookingcompleted', 'facetoface');
-            if ($session->datetimeknown && $facetoface->confirmationinstrmngr) {
-                $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br')
-                    . get_string('confirmationsentmgr', 'facetoface');
-            } else {
-                $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('confirmationsent', 'facetoface');
-            }
-
-            $timemessage = 4;
             $data = [
                 'manager' => $args->manager,
                 'notification' => $args->notification,
+                's' => $args->s
             ];
             return [
                 'templates' => [
