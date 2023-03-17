@@ -464,7 +464,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
-            'javascript' => '    console.log("pocetak")
+            'javascript' => '
     const managerInput = document.getElementById("manager");
     const notificationInput = document.getElementById("notification");
     const submitBtn = document.getElementById("submitBtn");
