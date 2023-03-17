@@ -465,20 +465,25 @@ class mobile
                 ],
             ],
             'javascript' => '
-        const managerInput = document.getElementById("manager");
-    const notificationInput = document.getElementById("notification");
-    const submitBtn = document.getElementById("submitBtn");
+       function updateButtonState() {
+       window.console.log("nesto");
+  const managerInput = document.getElementById("manager");
+  const notificationInput = document.getElementById("notification");
+  const submitBtn = document.getElementById("submitBtn");
 
-    function updateButtonState() {
-        if (managerInput.value.trim() !== "" && notificationInput.value.trim() !== "") {
-            submitBtn.disabled = false;
-        } else {
-            submitBtn.disabled = true;
-        }
-    }
+  // Enable the button if both inputs have a value
+  if (managerInput.value && notificationInput.value) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+}
 
-    managerInput.addEventListener("change", updateButtonState);
-    notificationInput.addEventListener("change", updateButtonState);',
+// Add event listeners to the input fields
+const managerInput = document.getElementById("manager");
+const notificationInput = document.getElementById("notification");
+managerInput.addEventListener("change", updateButtonState);
+notificationInput.addEventListener("change", updateButtonState);',
         ];
     }
 
