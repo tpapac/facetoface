@@ -449,8 +449,6 @@ class mobile
             }
         }
 
-
-
         // Display trainers.
       $trainerroles = facetoface_get_trainer_roles();
         $data = [
@@ -466,6 +464,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
+
         ];
     }
 
