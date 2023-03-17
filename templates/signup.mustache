@@ -23,7 +23,7 @@
 <form>
 <ion-item>
     <ion-label position="floating">Please confirm that this is your manager's email address:</ion-label>
-    <ion-input type="email" required class="ion-invalid" [(ngModel)]="manager" name="manager"></ion-input>
+    <ion-input type="email" required class="ion-invalid" [(ngModel)]="manager" name="manager" id="manager"></ion-input>
     <ion-text color="danger">
         <small>Manager's email</small>
     </ion-text>
@@ -31,7 +31,7 @@
 
 <ion-item>
     <ion-label>Notification type</ion-label>
-    <ion-select [(ngModel)]="notification" name="notification">
+    <ion-select [(ngModel)]="notification" name="notification" id="notification">
         <ion-select-option value="MDL_F2F_TEXT" selected>Email Notification only</ion-select-option>
         <ion-select-option value="MDL_F2F_BOTH">Email Notification and iCalendar Appointment</ion-select-option>
         <ion-select-option value="MDL_F2F_ICAL">iCalendar Appointment only</ion-select-option>
@@ -40,8 +40,21 @@
     <ion-item>
         <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                                component="mod_facetoface" method="signupConfirm"
-                               [args]="{manager: this.manager, notification: this.notification }">
+                               [args]="{manager: this.manager, notification: this.notification }"
+                                id="submitBtn">
             Signup
         </ion-button></ion-label>
     </ion-item>
 </form>
+<script>
+    const managerInput = document.getElementById('manager');
+    const notificationInput = document.getElementById('notification');
+    const submitBtn = document.getElementById('submitBtn');
+    managerInput.addEventListener('input', updateButtonState);
+    notificationInput.addEventListener('input', updateButtonState);
+    function updateButtonState() {
+        const managerValue = managerInput.value;
+        const notificationValue = notificationInput.value;
+        submitBtn.disabled = !(managerValue && notificationValue);
+    }
+</script>
