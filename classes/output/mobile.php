@@ -469,6 +469,7 @@ class mobile
 
     public static function signupConfirm($args)
     {
+        global $OUTPUT;
             $data = [
                 'manager' => $args->manager,
                 'notification' => $args->notification,
