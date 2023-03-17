@@ -419,7 +419,7 @@ class mobile
             $table->data[] = $insert;
         }
         if (!empty($session->details)) {
-            $details = $session->details;
+            $details = strip_tags($session->details);
             $insert = new stdClass();
             $insert->header = get_string('details', 'facetoface');
             $insert->value = $details;
