@@ -470,21 +470,20 @@ class mobile
     public static function signupConfirm($args)
     {
         global $OUTPUT;
-            $data = [
-                'manager' => $args->manager,
-                'notification' => $args->notification,
-            ];
-            return [
-                'templates' => [
-                    [
-                        'id' => 'main',
-                        'html' => $OUTPUT->render_from_template('mod_facetoface/signupConfirm', $data),
-                    ],
+        $args = (object)$args;
+        $data = [
+            'manager' => $args->manager,
+            'notification' => $args->notification,
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/signupConfirm', $data),
                 ],
-            ];
+            ],
+        ];
     }
-
-
 }
 
 
