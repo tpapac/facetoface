@@ -41,7 +41,7 @@
         <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                                component="mod_facetoface" method="signupConfirm"
                                [args]="{manager: this.manager, notification: this.notification }"
-                                id="submitBtn" disabled>
+                                id="submitBtn">
             Signup
         </ion-button></ion-label>
     </ion-item>
@@ -55,6 +55,11 @@
     function updateButtonState() {
         const managerValue = managerInput.value;
         const notificationValue = notificationInput.value;
-        submitBtn.disabled = !(managerValue && notificationValue);
+        if (managerValue && notificationValue) {
+            submitBtn.disabled = false
+        }
+        else {
+            submitBtn.disabled = true
+        }
     }
 </script>
