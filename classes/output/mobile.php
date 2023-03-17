@@ -474,6 +474,7 @@ class mobile
         $data = [
             'manager' => $args->manager,
             'notification' => $args->notification,
+            's' => $args->s
         ];
         return [
             'templates' => [
