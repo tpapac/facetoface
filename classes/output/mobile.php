@@ -464,29 +464,6 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
-            'javascript' => '
-       document.addEventListener("DOMContentLoaded", function() {
-  function updateButtonState() {
-    window.console.log("nesto");
-    const managerInput = document.getElementById("manager");
-    const notificationInput = document.getElementById("notification");
-    const submitBtn = document.getElementById("submitBtn");
-
-    // Enable the button if both inputs have a value
-    if (managerInput.value && notificationInput.value) {
-      submitBtn.disabled = false;
-    } else {
-      submitBtn.disabled = true;
-    }
-  }
-
-  // Add event listeners to the input fields
-  const managerInput = document.getElementById("manager");
-  const notificationInput = document.getElementById("notification");
-  managerInput.addEventListener("change", updateButtonState);
-  notificationInput.addEventListener("change", updateButtonState);
-});
-       ',
         ];
     }
 
