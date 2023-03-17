@@ -464,8 +464,24 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
-            'javascript' => '   window.console.log("nesto");
-    console.log("nestodruog");',
+            'javascript' => '    console.log("pocetak")
+    const managerInput = document.getElementById("manager");
+    const notificationInput = document.getElementById("notification");
+    const submitBtn = document.getElementById("submitBtn");
+    managerInput.addEventListener("input", updateButtonState);
+    notificationInput.addEventListener("input", updateButtonState);
+    function updateButtonState() {
+        window.console.log("pocetak");
+        console.log("nesto");
+        const managerValue = managerInput.value;
+        const notificationValue = notificationInput.value;
+        if (managerValue && notificationValue) {
+            submitBtn.disabled = false
+        }
+        else {
+            submitBtn.disabled = true
+        }
+    }',
         ];
     }
 
