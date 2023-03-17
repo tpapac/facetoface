@@ -465,23 +465,20 @@ class mobile
                 ],
             ],
             'javascript' => '
-    const managerInput = document.getElementById("manager");
+        const managerInput = document.getElementById("manager");
     const notificationInput = document.getElementById("notification");
     const submitBtn = document.getElementById("submitBtn");
-    managerInput.addEventListener("change", updateButtonState);
-    notificationInput.addEventListener("change", updateButtonState);
+
     function updateButtonState() {
-        window.console.log("pocetak");
-        console.log("nesto");
-        const managerValue = managerInput.value;
-        const notificationValue = notificationInput.value;
-        if (managerValue && notificationValue) {
-            submitBtn.disabled = false
+        if (managerInput.value.trim() !== "" && notificationInput.value.trim() !== "") {
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
         }
-        else {
-            submitBtn.disabled = true
-        }
-    }',
+    }
+
+    managerInput.addEventListener("change", updateButtonState);
+    notificationInput.addEventListener("change", updateButtonState);',
         ];
     }
 
