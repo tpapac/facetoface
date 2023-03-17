@@ -464,7 +464,8 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/signup', $data),
                 ],
             ],
-
+            'javascript' => '   window.console.log("nesto");
+    console.log("nestodruog");',
         ];
     }
 
