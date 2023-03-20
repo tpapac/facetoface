@@ -18,7 +18,7 @@ if (!$session->datetimeknown) {
 } else {
     $statuscode = MDL_F2F_STATUS_WAITLISTED;
 }
-var_dump($session);
+var_dump($facetoface);
 die();
 $submissionid = facetoface_user_signup($session, $facetoface, $course, '', 'MDL_F2F_TEXT', $statuscode, false, false);
 
