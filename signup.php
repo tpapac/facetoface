@@ -1,8 +1,7 @@
 <?php
 global $DB, $OUTPUT, $CFG, $PAGE, $USER;
-$dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-require_once($dir . '/config.php');
-require_once($dir . '/mod/facetoface/lib.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+require_once('lib.php');
 $session = \facetoface_get_session('1');
 $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
 $course = $DB->get_record('course', array('id' => $facetoface->course));
