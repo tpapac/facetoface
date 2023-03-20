@@ -488,7 +488,7 @@ class mobile
             $statuscode = MDL_F2F_STATUS_WAITLISTED;
         }
 
-       // $submissionid = facetoface_user_signup($session, $facetoface, $course, '', $args->notification, $statuscode, false, false);
+        $submissionid = facetoface_user_signup($session, $facetoface, $course, '', $args->notification, $statuscode, false, false);
 
         $message = get_string('bookingcompleted', 'facetoface');
         if ($session->datetimeknown && $facetoface->confirmationinstrmngr) {
