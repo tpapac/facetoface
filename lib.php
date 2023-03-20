@@ -1873,7 +1873,8 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
         global $USER;
         $userid = $USER->id;
     }
-
+    var_dump($userid);
+    die();
     $return = false;
     $timenow = time();
 
