@@ -1867,7 +1867,13 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
                                 $notifyuser = true) {
 
     global $CFG, $DB;
-
+    var_dump($session);
+    var_dump($facetoface);
+    var_dump($course);
+    var_dump($discountcode);
+    var_dump($notificationtype);
+    var_dump($statuscode);
+    die();
     // Get user ID.
     if (!$userid) {
         global $USER;
