@@ -1896,9 +1896,12 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
     }
     // Update/insert the signup record.
     if (!empty($usersignup->id)) {
+        var_dump('ima');
+        die();
         $success = $DB->update_record('facetoface_signups', $usersignup);
     } else {
-
+        var_dump('nema');
+        die();
         $usersignup->id = $DB->insert_record('facetoface_signups', $usersignup);
         $success = (bool)$usersignup->id;
     }
