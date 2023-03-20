@@ -495,7 +495,7 @@ class mobile
             $message .= html_writer::empty_tag('br') . \html_writer::empty_tag('br')
                 . get_string('confirmationsentmgr', 'facetoface');
         } else {
-            $message .= html_writer::empty_tag('br') . \html_writer::empty_tag('br') . get_string('confirmationsent', 'facetoface');
+            $message .= \html_writer::empty_tag('br') . \html_writer::empty_tag('br') . get_string('confirmationsent', 'facetoface');
         }
 
         $timemessage = 4;
