@@ -240,7 +240,7 @@ class mobile
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . 'cmid: ' . $args->cmid . ',courseid:' . $args->courseid . '}">
                     Signup
                 </ion-button></ion-label>
             </ion-item>';
@@ -503,7 +503,9 @@ class mobile
         $data = [
             'manager' => $args->manager,
             'notification' => $args->notification,
-            's' => $args->s
+            's' => $args->s,
+            'cmid' => $args->cmid,
+            'courseid' => $args->courseid
         ];
         return [
             'templates' => [
