@@ -1868,10 +1868,15 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
 
     global $CFG, $DB;
     var_dump($session);
+    var_dump('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     var_dump($facetoface);
+    var_dump('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     var_dump($course);
+    var_dump('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     var_dump($discountcode);
+    var_dump('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     var_dump($notificationtype);
+    var_dump('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     var_dump($statuscode);
     die();
     // Get user ID.
