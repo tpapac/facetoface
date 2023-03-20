@@ -1873,8 +1873,6 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
         global $USER;
         $userid = $USER->id;
     }
-    var_dump($userid);
-    die();
     $return = false;
     $timenow = time();
 
@@ -1901,6 +1899,8 @@ function facetoface_user_signup($session, $facetoface, $course, $discountcode,
     if (!empty($usersignup->id)) {
         $success = $DB->update_record('facetoface_signups', $usersignup);
     } else {
+        var_dump($usersignup);
+        die();
         $usersignup->id = $DB->insert_record('facetoface_signups', $usersignup);
         $success = (bool)$usersignup->id;
     }
