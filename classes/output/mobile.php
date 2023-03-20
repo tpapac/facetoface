@@ -3,7 +3,6 @@
 namespace mod_facetoface\output;
 
 
-
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
@@ -237,12 +236,11 @@ class mobile
                     $options .= \html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
                         get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
                 }
-            }
-            else if (!$sessionstarted && !$bookedsession && $signuplinks) {
+            } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="{s: ' .  $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . '}">
                     Signup
                 </ion-button></ion-label>
             </ion-item>';
@@ -360,7 +358,7 @@ class mobile
             $insert = new stdClass();
             $insert->header = $strdatetime;
             $insert->value = \html_writer::tag('i', 'wait-listed');
-           $table->data[] = $insert;
+            $table->data[] = $insert;
         }
         $signupcount = facetoface_get_num_attendees($session->id);
         $placesleft = $session->capacity - $signupcount;
@@ -369,7 +367,7 @@ class mobile
             if ($session->allowoverbook) {
                 $insert = new stdClass();
                 $insert->header = get_string('capacity', 'facetoface');
-                $insert->value = $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'facetoface')).')';
+                $insert->value = $session->capacity . ' (' . strtolower(get_string('allowoverbook', 'facetoface')) . ')';
                 $table->data[] = $insert;
             } else {
                 $insert = new stdClass();
@@ -377,8 +375,7 @@ class mobile
                 $insert->value = $session->capacity;
                 $table->data[] = $insert;
             }
-        }
-        else if (!$calendaroutput) {
+        } else if (!$calendaroutput) {
             $insert = new stdClass();
             $insert->header = get_string('seatsavailable', 'facetoface');
             $insert->value = max(0, $placesleft);
@@ -438,8 +435,8 @@ class mobile
 
                 $trainernames = array();
                 foreach ($trainers[$role] as $trainer) {
-                   // $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
-                   // $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
+                    // $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
+                    // $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
                 }
 //                $insert = new stdClass();
 //                $insert->header = $rolename;
@@ -450,7 +447,7 @@ class mobile
         }
 
         // Display trainers.
-      $trainerroles = facetoface_get_trainer_roles();
+        $trainerroles = facetoface_get_trainer_roles();
         $data = [
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
@@ -480,28 +477,28 @@ class mobile
         $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
         $context = \context_course::instance($course->id);
 
-            // Get signup type.
-            if (!$session->datetimeknown) {
-                $statuscode = MDL_F2F_STATUS_WAITLISTED;
-            } else if (facetoface_get_num_attendees($session->id) < $session->capacity) {
+        // Get signup type.
+        if (!$session->datetimeknown) {
+            $statuscode = MDL_F2F_STATUS_WAITLISTED;
+        } else if (facetoface_get_num_attendees($session->id) < $session->capacity) {
 
-                // Save available.
-                $statuscode = MDL_F2F_STATUS_BOOKED;
-            } else {
-                $statuscode = MDL_F2F_STATUS_WAITLISTED;
-            }
+            // Save available.
+            $statuscode = MDL_F2F_STATUS_BOOKED;
+        } else {
+            $statuscode = MDL_F2F_STATUS_WAITLISTED;
+        }
 
-            $submissionid = facetoface_user_signup($session, $facetoface, $course, 'none', $args->notification, $statuscode, false, false);
+        $submissionid = facetoface_user_signup($session, $facetoface, $course, '', $args->notification, $statuscode, false, false);
 
-                $message = get_string('bookingcompleted', 'facetoface');
-                if ($session->datetimeknown && $facetoface->confirmationinstrmngr) {
-                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br')
-                        . get_string('confirmationsentmgr', 'facetoface');
-                } else {
-                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('confirmationsent', 'facetoface');
-                }
+        $message = get_string('bookingcompleted', 'facetoface');
+        if ($session->datetimeknown && $facetoface->confirmationinstrmngr) {
+            $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br')
+                . get_string('confirmationsentmgr', 'facetoface');
+        } else {
+            $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('confirmationsent', 'facetoface');
+        }
 
-                $timemessage = 4;
+        $timemessage = 4;
 
         $data = [
             'manager' => $args->manager,
