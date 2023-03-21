@@ -1,14 +1,24 @@
 {{=<% %>=}}
+<script src="../js/signupConfirm.ts"></script>
+<script>
+    // Call the goToCourse function when the button is clicked.
+    document.getElementById('go-to-course-btn').addEventListener('click', function() {
+        goToCourse();
+    });
+</script>
 <%r%>
 <%c%>
 <ion-card>Prijava uspješna
+    <button id="go-to-course-btn">Go to Course Page</button>
 <br>
     <ion-item>
-        <ion-button expand="block" color="primary" core-site-plugins-new-content title="Return"
-                               component="mod_facetoface" method="view_facetoface"
-                               [args]="{ courseid: <%r%>, cmid: <%c%> }"
-                             >
-            Signup
-        </ion-button>
+<!--        <ion-button expand="block" color="primary" core-site-plugins-new-content title="Return"-->
+<!--                               component="mod_facetoface" method="view_facetoface"-->
+<!--                               [args]="{ courseid: <%r%>, cmid: <%c%> }"-->
+<!--                             >-->
+<!--            Signup-->
+<!--        </ion-button>-->
+
+
     </ion-item>
 </ion-card>
