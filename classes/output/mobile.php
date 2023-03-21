@@ -307,7 +307,7 @@ class mobile
                     'html' => $OUTPUT->render_from_template('mod_facetoface/form_view', $data),
                 ],
             ],
-            'javascript' => 'setTimeout(function() { location.reload });',
+            'javascript' => 'setTimeout(function() { window.location.reload });',
         ];
     }
 
