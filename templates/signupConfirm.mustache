@@ -8,10 +8,19 @@
 <!--            Signup-->
 
 <!--        </ion-button>-->
-        <ion-button href="<% courseurl %>">
-            <ion-icon slot="start" name="arrow-back"></ion-icon>
-           Povratak
-        </ion-button>
+<!--        <ion-button href="<% courseurl %>">-->
+<!--            <ion-icon slot="start" name="arrow-back"></ion-icon>-->
+<!--           Povratak-->
+<!--        </ion-button>-->
+        <ion-item>
+            <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
+                                   component="mod_facetoface" method="view_facetoface"
+                                   [args]="{cmid: <% c %>, courseid: <% r %>}"
+                                   [preSets]="{getFromCache: 0, saveToCache: 0}"
+                                   id="submitBtn">
+                Signup
+            </ion-button></ion-label>
+        </ion-item>
 
     </ion-item>
 </ion-card>
