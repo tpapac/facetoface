@@ -240,7 +240,7 @@ class mobile
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface .'}">
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface . ',' . 'cmid1: ' . $args->cmid . ',' . 'courseid: ' . $args->courseid . '}">
                     Signup
                 </ion-button></ion-label>
             </ion-item>';
