@@ -296,8 +296,6 @@ class mobile
             'signupforstreamlink' => $signupforstreamlink,
             'tableheader' => $tableheader,
             'rows' => $items,
-            'c' => $args->cmid,
-            'r' => $args->courseid
         ];
         return [
             'templates' => [
@@ -473,6 +471,7 @@ class mobile
     public static function signupConfirm($args)
     {
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
+        $courseurl = $CFG->wwwroot.'/course/view.php?id=2';
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
@@ -510,6 +509,7 @@ class mobile
             'manager' => $args->manager,
             'notification' => $args->notification,
             's' => $args->s,
+            'courseurl' => $courseurl
         ];
         return [
             'templates' => [
