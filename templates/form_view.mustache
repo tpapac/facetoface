@@ -1,4 +1,5 @@
 {{=<% %>=}}
+<ion-content>
 <ion-view cache="false">
 <%#rows%>
 <ion-header [translucent] = "true">
@@ -19,8 +20,9 @@
 <%/rows%>
 </ion-view>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
+    <script>
+        window.onload = function() {
             location.reload();
-    });
-</script>
+        };
+    </script>
+</ion-content>
