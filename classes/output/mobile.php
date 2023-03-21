@@ -295,8 +295,6 @@ class mobile
             'signupforstreamlink' => $signupforstreamlink,
             'tableheader' => $tableheader,
             'rows' => $items,
-            'cmdi1' =>$args->cmid,
-            'courseid' => $args->courseid
         ];
         return [
             'templates' => [
