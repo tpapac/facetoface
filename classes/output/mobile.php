@@ -4,6 +4,7 @@ namespace mod_facetoface\output;
 
 
 use stdClass;
+use DB;
 
 defined('MOODLE_INTERNAL') || die();
 
