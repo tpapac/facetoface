@@ -19,7 +19,6 @@ class mobile
         require_once($dir . '/mod/facetoface/lib.php');
         require_once($dir . '/mod/facetoface/renderermobile.php');
 
-
         $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
         $course = $DB->get_record('course', array('id' => $cm->course));
