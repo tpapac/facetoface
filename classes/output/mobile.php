@@ -471,7 +471,6 @@ class mobile
     public static function signupConfirm($args)
     {
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
-        $courseurl = $CFG->wwwroot.'/course/view.php?id=2';
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
@@ -479,6 +478,7 @@ class mobile
         $session = \facetoface_get_session($args->s);
         $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
         $course = $DB->get_record('course', array('id' => $facetoface->course));
+        $courseurl = $CFG->wwwroot.'/course/view.php?id=' . $course->id;
         $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
         $context = \context_course::instance($course->id);
 
