@@ -504,8 +504,6 @@ class mobile
             'manager' => $args->manager,
             'notification' => $args->notification,
             's' => $args->s,
-            'cmid' => $args->cmid,
-            'courseid' => $args->courseid
         ];
         return [
             'templates' => [
