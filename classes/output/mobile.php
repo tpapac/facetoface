@@ -6,21 +6,18 @@ namespace mod_facetoface\output;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/config.php');
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/mod/facetoface/lib.php');
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/mod/facetoface/renderermobile.php');
 
 class mobile
 {
 
     public static function view_facetoface($args)
     {
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Cache-Control: post-check=0, pre-check=0", false);
-        header("Pragma: no-cache");
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-        require_once($dir . '/config.php');
-        require_once($dir . '/mod/facetoface/lib.php');
-        require_once($dir . '/mod/facetoface/renderermobile.php');
 
         $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
