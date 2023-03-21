@@ -299,6 +299,7 @@ class mobile
             'tableheader' => $tableheader,
             'rows' => $items,
             'c' => $args->cmid,
+            'r' => $args->courseid
         ];
         return [
             'templates' => [
