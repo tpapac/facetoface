@@ -456,7 +456,6 @@ class mobile
             'backtoallsessions' => $args->backtoallsessions,
             'session' => $session,
             'table' => $table->data,
-            'cmidi' => $args->cmidi,
             'courseidi' => $args->courseidi,
         ];
         return [
