@@ -240,7 +240,7 @@ class mobile
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
                         [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .
-                         ',' . 'cmidi: ' . $args->cmid . ',' . 'courseidi: ' . $args->courseid .
+                         ',' . 'c: ' . $args->cmid . ',' . 'r: ' . $args->courseid .
                     '}">
        
                     Signup
@@ -457,6 +457,8 @@ class mobile
             'session' => $session,
             'table' => $table->data,
             'courseidi' => $args->courseidi,
+            'c' => $args->c,
+            'r' => $args->r
         ];
         return [
             'templates' => [
