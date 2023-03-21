@@ -13,8 +13,6 @@ class mobile
     public static function view_facetoface($args)
     {
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
-        $cmidpass = $args->cmid;
-        $courseidpass = $args->courseid;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
         require_once($dir . '/config.php');
@@ -242,7 +240,9 @@ class mobile
                 $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                         component="mod_facetoface" method="signup"
-                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  . '}">
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .
+                         ',' . 'cmidi: ' . $args->cmid . ',' . 'courseidi: ' . $args->courseid .
+                    '}">
        
                     Signup
                 </ion-button></ion-label>
