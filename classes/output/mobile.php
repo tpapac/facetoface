@@ -6,18 +6,19 @@ namespace mod_facetoface\output;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/config.php');
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/mod/facetoface/lib.php');
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))). '/mod/facetoface/renderermobile.php');
 
 class mobile
 {
 
     public static function view_facetoface($args)
     {
-        global $DB, $OUTPUT, $CFG, $PAGE, $USER;
+        global $OUTPUT, $CFG, $PAGE, $USER;
+        $DB = \DB::getmanager();
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
+        require_once($dir . '/mod/facetoface/renderermobile.php');
 
         $cmid = \get_coursemodule_from_id('facetoface', $args->cmid);
         $cm = $DB->get_record('course_modules', array('id' => $args->courseid));
