@@ -12,6 +12,7 @@ class mobile
 
     public static function view_facetoface($args)
     {
+        header("Refresh:0");
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
