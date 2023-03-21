@@ -1,10 +1,12 @@
 {{=<% %>=}}
+<%r%>
+<%c%>
 <ion-card>Prijava uspješna
 <br>
     <ion-item>
         <ion-button expand="block" color="primary" core-site-plugins-new-content title="Return"
                                component="mod_facetoface" method="view_facetoface"
-                               [args]="{courseid: <%r%>, cmid: <%c%>}"
+                               [args]="{ courseid: <%r%>, cmid: <%c%> }"
                              >
             Signup
         </ion-button>
