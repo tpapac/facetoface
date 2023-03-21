@@ -1,8 +1,5 @@
 {{=<% %>=}}
-<script>
-    window.location.reload();
-</script>
-<ion-view cache="false">
+<ion-view cache="false" id="nesto">
 
 <%#rows%>
 <ion-header [translucent] = "true">
@@ -24,8 +21,15 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        window.onload = function() {
-            location.reload();
-        };
+        $(document).ready(function() {
+            // Get a reference to the HTML element to be refreshed
+            var contentElem = document.getElementById('nesto');
+
+            // Call the refreshContent function with the showSpinner parameter
+            M.core.action_delegator.trigger(
+                    'core/refresh-content',
+                    {selector: '#my-content', showSpinner: true}
+            );
+        });
     </script>
 </ion-view>
