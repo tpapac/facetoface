@@ -12,6 +12,9 @@ class mobile
 
     public static function view_facetoface($args)
     {
+        header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        header("Pragma: no-cache"); // HTTP 1.0.
+        header("Expires: 0"); // Proxies.
         global $DB, $OUTPUT, $CFG, $PAGE, $USER;
         $args = (object)$args;
         $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
