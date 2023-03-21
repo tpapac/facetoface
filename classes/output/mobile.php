@@ -509,7 +509,8 @@ class mobile
             'manager' => $args->manager,
             'notification' => $args->notification,
             's' => $args->s,
-            'courseurl' => $courseurl
+            'courseurl' => $courseurl,
+            'courseid' => $args->courseid
         ];
         return [
             'templates' => [

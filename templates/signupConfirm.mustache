@@ -1,9 +1,6 @@
 {{=<% %>=}}
 
 <ion-card>Prijava uspješna
-    <% c %>
-    <% r %>
-    <% s %>
     <ion-item>
 <!--        <ion-button expand="block" color="primary" core-site-plugins-new-content title="Return"-->
 <!--                               component="mod_facetoface" method="view_facetoface"-->
@@ -13,7 +10,7 @@
 <!--        </ion-button>-->
         <ion-button href="<% courseurl %>">
             <ion-icon slot="start" name="arrow-back"></ion-icon>
-            Return to Course
+            <% courseid %>
         </ion-button>
 
     </ion-item>
