@@ -1,6 +1,5 @@
 {{=<% %>=}}
-<% r %>
-<% c %>
+
 <ion-header [translucent] = 'true'>
     <ion-toolbar color="primary">
         <ion-title>
@@ -42,7 +41,7 @@
     <ion-item>
         <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                                component="mod_facetoface" method="signupConfirm"
-                               [args]="{manager: this.manager, notification: this.notification, s: <% s %>}"
+                               [args]="{manager: this.manager, notification: this.notification, s: <% s %>, c: <% c %>, r: <% r %>}"
                                 id="submitBtn">
             Signup
         </ion-button></ion-label>
