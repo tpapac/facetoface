@@ -248,7 +248,6 @@ class mobile
                 </ion-button></ion-label>
             </ion-item>';
             }
-            $args = '"{s: ' . ' $session->id . ' . ', backtoallsessions: ' . $session->facetoface . '}">';
             if (empty($options)) {
                 $options = get_string('none', 'facetoface');
             }
@@ -456,6 +455,8 @@ class mobile
             'backtoallsessions' => $args->backtoallsessions,
             'session' => $session,
             'table' => $table->data,
+            'cmidi' => $args->cmidi,
+            'courseidi' => $args->courseidi,
         ];
         return [
             'templates' => [
