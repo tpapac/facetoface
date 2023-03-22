@@ -1,8 +1,17 @@
 {{=<% %>=}}
+Are you sure you want to cancel your booking to this session?
+<ion-item>
+    <ion-label>Enter reason</ion-label>
+    <ion-input [(ngModel)]="reason" name="reason" id="reason"></ion-input>
+</ion-item>
 
-<% cancel %>
+<ion-item>
+    <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="cancelConfirm"
+                           component="mod_facetoface" method="cancel"
+                           [args]="{reason: this.reason, s: <% s %>, backtoallsessions: <% backtoallsessions %>"
+                           id="cancelbtn">
+        Confirm
+    </ion-button></ion-label>
+</ion-item>
 
-<% s %>
-
-<% backtoallsessions %>
 

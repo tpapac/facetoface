@@ -537,7 +537,6 @@ class mobile
         $args = (object)$args;
         global $OUTPUT;
         $data = [
-            'cancel' => 'cancel',
             's' => $args->s,
             'backtoallsessions' => $args->backtoallsessions,
         ];
@@ -546,6 +545,29 @@ class mobile
                 [
                     'id' => 'main',
                     'html' => $OUTPUT->render_from_template('mod_facetoface/cancel', $data),
+                ],
+            ],
+        ];
+
+    }
+    public static function cancelConfirm($args) {
+        global $DB, $OUTPUT, $CFG, $PAGE, $USER;
+        $args = (object)$args;
+        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
+        $session = \facetoface_get_session($args->s);
+        facetoface_user_cancel($session, false, false, $errorstr, $args->reason);
+        $data = [
+            's' => $args->s,
+            'backtoallsessions' => $args->backtoallsessions,
+            'reason' => $args->reason
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/cancelConfirm', $data),
                 ],
             ],
         ];
