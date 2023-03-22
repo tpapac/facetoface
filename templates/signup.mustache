@@ -42,6 +42,7 @@
         <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="Signup"
                                component="mod_facetoface" method="signupConfirm"
                                [args]="{manager: this.manager, notification: this.notification, s: <% s %>, c: <% c %>, r: <% r %>}"
+                               [preSets]="{getFromCache: 0, saveToCache: 0}"
                                 id="submitBtn">
             Signup
         </ion-button></ion-label>

@@ -239,7 +239,8 @@ class mobile
                     $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="cancel"
                         component="mod_facetoface" method="cancel"
-                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .'}">
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .'}"
+                        [preSets]="{getFromCache: 0, saveToCache: 0}">
                     Cancel
                 </ion-button></ion-label>
             </ion-item>';
