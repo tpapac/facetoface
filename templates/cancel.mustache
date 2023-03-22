@@ -9,7 +9,7 @@ Are you sure you want to cancel your booking to this session?
         <ion-button expand="block" color="light" core-site-plugins-new-content title="cancelConfirm"
                            component="mod_facetoface" method="cancelConfirm"
                            [args]="{reason: this.reason, s: <% s %>, backtoallsessions: <% backtoallsessions %> }"
-                           [preSets]="{getFromCache: 0, saveToCache: 0}"
+                           [preSets]="{getFromCache: 1, saveToCache: 1}"
                            id="cancelbtn">
         Confirm
         </ion-button>
