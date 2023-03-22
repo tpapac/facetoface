@@ -4,13 +4,12 @@ Are you sure you want to cancel your booking to this session?
     <ion-label>Enter reason</ion-label>
     <ion-input [(ngModel)]="reason" name="reason" id="reason"></ion-input>
 </ion-item>
-<% s %>
-<% backtoallsessions %>
 <ion-item>
     <ion-label>
         <ion-button expand="block" color="light" core-site-plugins-new-content title="cancelConfirm"
                            component="mod_facetoface" method="cancelConfirm"
                            [args]="{reason: this.reason, s: <% s %>, backtoallsessions: <% backtoallsessions %> }"
+                           [preSets]="{getFromCache: 0, saveToCache: 0}"
                            id="cancelbtn">
         Confirm
         </ion-button>
