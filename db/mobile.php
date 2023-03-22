@@ -20,7 +20,7 @@ $addons = [
             ['allsessionsin', 'mod_facetoface'],
             ['addsession', 'mod_facetoface'],
             ['upcomingsessions', 'mod_facetoface'],
-	    ['signup', 'mod_facetoface'],
+	        ['signup', 'mod_facetoface'],
         ],
     ],
 ];

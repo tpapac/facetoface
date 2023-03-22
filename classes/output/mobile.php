@@ -253,8 +253,9 @@ class mobile
                         component="mod_facetoface" method="signup"
                         [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .
                          ',' . 'c: ' . $args->cmid . ',' . 'r: ' . $args->courseid .
-                    '}">
-                    Signup
+                    '}"
+                        [preSets]="{getFromCache: 0, saveToCache: 0}">
+                    Signup1
                 </ion-button></ion-label>
             </ion-item>';
             }
