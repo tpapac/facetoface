@@ -236,8 +236,15 @@ class mobile
                         get_string('moreinfo', 'facetoface'),
                         array('title' => get_string('moreinfo', 'facetoface'))) . '<br>';
                 if ($session->allowcancellations) {
-                    $options .= \html_writer::link('cancelsignup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                        get_string('cancelbooking', 'facetoface'), array('title' => get_string('cancelbooking', 'facetoface')));
+                    $options .= '<ion-item>
+                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="cancel"
+                        component="mod_facetoface" method="cancel"
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .'}">
+                    Cancel
+                </ion-button></ion-label>
+            </ion-item>';
+
+
                 }
             } else if (!$sessionstarted && !$bookedsession && $signuplinks) {
                 $options .= '<ion-item>
@@ -524,6 +531,25 @@ class mobile
                 ],
             ],
         ];
+    }
+
+    public static function cancel($args) {
+        $args = (object)$args;
+        global $OUTPUT;
+        $data = [
+            'cancel' => 'cancel',
+            's' => $args->s,
+            'backtoallsessions' => $args->backtoallsessions,
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/cancel', $data),
+                ],
+            ],
+        ];
+
     }
 }
 
