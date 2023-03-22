@@ -232,9 +232,16 @@ class mobile
                         array('title' => get_string('downloadods'))) . ' ' . '<br>';
             }
             if ($isbookedsession) {
-                $options .= \html_writer::link('signup.php?s=' . $session->id . '&backtoallsessions=' . $session->facetoface,
-                        get_string('moreinfo', 'facetoface'),
-                        array('title' => get_string('moreinfo', 'facetoface'))) . '<br>';
+                $options .= '<ion-item>
+                <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="info"
+                        component="mod_facetoface" method="info"
+                        [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .
+                    ',' . 'c: ' . $args->cmid . ',' . 'r: ' . $args->courseid .
+                    '}"
+                        [preSets]="{getFromCache: 0, saveToCache: 0}">
+                    Signup
+                </ion-button></ion-label>
+            </ion-item>';
                 if ($session->allowcancellations) {
                     $options .= '<ion-item>
                 <ion-label><ion-button expand="block" color="light" core-site-plugins-new-content title="cancel"
@@ -574,6 +581,165 @@ class mobile
             ],
         ];
 
+    }
+
+    public static function  info($args) {
+        global $DB, $OUTPUT, $CFG, $PAGE, $USER;
+        $args = (object)$args;
+        $dir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+        require_once($dir . '/config.php');
+        require_once($dir . '/mod/facetoface/lib.php');
+
+        $session = \facetoface_get_session($args->s);
+        $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
+        $course = $DB->get_record('course', array('id' => $facetoface->course));
+        $cm = get_coursemodule_from_instance("facetoface", $facetoface->id, $course->id);
+        $context = \context_course::instance($course->id);
+        $viewattendees = has_capability('mod/facetoface:viewattendees', $context);
+        $customfields = facetoface_get_session_customfields();
+        $customdata = $DB->get_records('facetoface_session_data', array('sessionid' => $session->id), '', 'fieldid, data');
+        $table = new stdClass();
+        foreach ($customfields as $field) {
+            $data = '';
+            if (!empty($customdata[$field->id])) {
+                if (CUSTOMFIELD_TYPE_MULTISELECT == $field->type) {
+                    $values = explode(CUSTOMFIELD_DELIMITER, $customdata[$field->id]->data);
+                    $data = implode(\html_writer::empty_tag('br'), $values);
+                } else {
+                    $data = $customdata[$field->id]->data;
+                }
+            }
+            $insert = new stdClass();
+            $insert->header = str_replace(' ', '&nbsp;', $field->name);
+            $insert->value = $data;
+            $table->data[] = $insert;
+        }
+        $strdatetime = str_replace(' ', '&nbsp;', get_string('sessiondatetime', 'facetoface'));
+        if ($session->datetimeknown) {
+            $html = '';
+            foreach ($session->sessiondates as $date) {
+                if (!empty($html)) {
+                    $html .= '<br>';
+                }
+                $timestart = \userdate($date->timestart, 'strftimedatetime');
+                $timefinish = \userdate($date->timefinish, 'strftimedatetime');
+                $html .= "$timestart &ndash; $timefinish";
+            }
+            $insert = new stdClass();
+            $insert->header = $strdatetime;
+            $insert->value = $html;
+            $table->data[] = $insert;
+        } else {
+            $insert = new stdClass();
+            $insert->header = $strdatetime;
+            $insert->value = \html_writer::tag('i', 'wait-listed');
+            $table->data[] = $insert;
+        }
+        $signupcount = facetoface_get_num_attendees($session->id);
+        $placesleft = $session->capacity - $signupcount;
+        $calendaroutput = false;
+        if ($viewattendees) {
+            if ($session->allowoverbook) {
+                $insert = new stdClass();
+                $insert->header = get_string('capacity', 'facetoface');
+                $insert->value = $session->capacity . ' (' . strtolower(get_string('allowoverbook', 'facetoface')) . ')';
+                $table->data[] = $insert;
+            } else {
+                $insert = new stdClass();
+                $insert->header = get_string('capacity', 'facetoface');
+                $insert->value = $session->capacity;
+                $table->data[] = $insert;
+            }
+        } else if (!$calendaroutput) {
+            $insert = new stdClass();
+            $insert->header = get_string('seatsavailable', 'facetoface');
+            $insert->value = max(0, $placesleft);
+            $table->data[] = $insert;
+        }
+        $facetoface = $DB->get_record('facetoface', array('id' => $session->facetoface));
+        if ($facetoface->approvalreqd) {
+            $insert = new stdClass();
+            $insert->header = '';
+            $insert->value = et_string('sessionrequiresmanagerapproval', 'facetoface');
+            $table->data[] = $insert;
+        }
+
+        // Display waitlist notification.
+        if (!$hidesignup && $session->allowoverbook && $placesleft < 1) {
+            $insert = new stdClass();
+            $insert->header = '';
+            $insert->value = get_string('userwillbewaitlisted', 'facetoface');
+            $table->data[] = $insert;
+        }
+
+        if (!empty($session->duration)) {
+            $insert = new stdClass();
+            $insert->header = get_string('duration', 'facetoface');
+            $insert->value = facetoface_format_duration($session->duration);
+            $table->data[] = $insert;
+        }
+        if (!empty($session->normalcost)) {
+            $insert = new stdClass();
+            $insert->header = get_string('normalcost', 'facetoface');
+            $insert->value = format_cost($session->normalcost);
+            $table->data[] = $insert;
+        }
+        if (!empty($session->discountcost)) {
+            $insert = new stdClass();
+            $insert->header = get_string('discountcost', 'facetoface');
+            $insert->value = format_cost($session->discountcost);
+            $table->data[] = $insert;
+        }
+        if (!empty($session->details)) {
+            $details = strip_tags($session->details);
+            $insert = new stdClass();
+            $insert->header = get_string('details', 'facetoface');
+            $insert->value = $details;
+            $table->data[] = $insert;
+        }
+        if ($trainerroles) {
+
+            // Get trainers.
+            $trainers = facetoface_get_trainers($session->id);
+            foreach ($trainerroles as $role => $rolename) {
+                $rolename = $rolename->name;
+
+                if (empty($trainers[$role])) {
+                    continue;
+                }
+
+                $trainernames = array();
+                foreach ($trainers[$role] as $trainer) {
+                    // $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
+                    // $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
+                }
+//                $insert = new stdClass();
+//                $insert->header = $rolename;
+//                $insert->value = format_text($details, FORMAT_HTML, array('context' => \context_system::instance()));
+//                $table->data[] = $insert;
+//                $table->data[] = array($rolename, implode(', ', $trainernames));
+            }
+        }
+
+        // Display trainers.
+        $trainerroles = facetoface_get_trainer_roles();
+        $data = [
+            's' => $args->s,
+            'backtoallsessions' => $args->backtoallsessions,
+            'session' => $session,
+            'table' => $table->data,
+            'courseidi' => $args->courseidi,
+            'c' => $args->c,
+            'r' => $args->r
+        ];
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('mod_facetoface/info', $data),
+                ],
+            ],
+        ];
     }
 }
 
