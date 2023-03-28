@@ -660,7 +660,7 @@ class mobile
         if ($facetoface->approvalreqd) {
             $insert = new stdClass();
             $insert->header = '';
-            $insert->value = et_string('sessionrequiresmanagerapproval', 'facetoface');
+            $insert->value = get_string('sessionrequiresmanagerapproval', 'facetoface');
             $table->data[] = $insert;
         }
 
