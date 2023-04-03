@@ -61,7 +61,7 @@ $string['booked'] = 'Booked';
 $string['bookingcancelled'] = 'Your booking has been cancelled.';
 $string['bookingcompleted'] = 'Your booking has been completed.';
 $string['bookingfull'] = 'Booking full';
-$string['bookingopen'] = 'Booking open';
+$string['bookingopen'] = 'Prijave otvorene';
 $string['bookingstatus'] = 'You are booked for the following session';
 $string['calendareventdescriptionbooking'] = 'You are booked for this <a href="{$a}">Face-to-Face session</a>.';
 $string['calendareventdescriptionsession'] = 'You have created this <a href="{$a}">Face-to-Face session</a>.';
