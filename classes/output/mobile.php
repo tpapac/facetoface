@@ -378,7 +378,7 @@ class mobile
         } else {
             $insert = new stdClass();
             $insert->header = $strdatetime;
-            $insert->value = \html_writer::tag('i', 'wait-listed');
+            $insert->value = \html_writer::tag('i', 'na čekanju');
             $table->data[] = $insert;
         }
         $signupcount = facetoface_get_num_attendees($session->id);
