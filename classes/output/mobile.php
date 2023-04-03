@@ -248,7 +248,7 @@ class mobile
                         component="mod_facetoface" method="cancel"
                         [args]="{s: ' . $session->id . ',' . 'backtoallsessions: ' . $session->facetoface  .'}"
                         [preSets]="{getFromCache: 0, saveToCache: 0}">
-                    Cancel
+                    Poništi
                 </ion-button></ion-label>
             </ion-item>';
 
