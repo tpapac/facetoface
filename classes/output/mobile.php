@@ -262,7 +262,7 @@ class mobile
                          ',' . 'c: ' . $args->cmid . ',' . 'r: ' . $args->courseid .
                     '}"
                         [preSets]="{getFromCache: 0, saveToCache: 0}">
-                    Signup
+                    Prijava
                 </ion-button></ion-label>
             </ion-item>';
             }
